@@ -1,0 +1,652 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if page.url == "" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+      /* Ocultar header, pestañas y sidebars solo en el index */
+      .md-header,
+      .md-tabs,
+      .md-sidebar--primary,
+      .md-sidebar--secondary {
+        display: none !important;
+      }
+
+      /* Expande el contenido al ancho completo sin margen */
+      .md-main {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .md-main__inner {
+        margin: 0 !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+
+      .md-content {
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .md-content__inner {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* Eliminar el pseudo-elemento que genera margen arriba del contenido */
+        article.md-content__inner.md-typeset::before {
+        display: none !important;
+        content: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        }
+
+
+      .md-container {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .objectives-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1500px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.objective {
+  display: flex;
+  align-items: center;        /* centra verticalmente */
+  justify-content: center;    /* opcional: centra horizontalmente */
+  gap: 2rem;                  /* separación entre imagen y texto */
+  background: white;
+  border-radius: 10px;
+  padding: 1.8rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+
+.objective img {
+  
+  width: 240px;          /* tamaño ajustado */
+  height: auto;
+  margin: 0 auto 1rem;   /* centrado horizontal y margen inferior */
+  border-radius: 50%;    /* mantiene forma circular si aplica */
+  background: transparent;
+}
+
+
+
+
+.objective h3 {
+  font-size: 1.4rem;
+  color: #005f87;
+  margin-bottom: 0.8rem;
+}
+
+.objective p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.objective:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+      /* Hero a pantalla completa */
+    .hero {
+      text-align: center;
+      padding: 2rem 2rem 3rem;
+      background: linear-gradient(135deg, #0099cc, #0077aa);
+      color: white;
+      margin: 0;
+    }
+
+
+      .hero img {
+        width: 120px;
+        height: auto;
+        margin-bottom: 1.5rem;
+        filter: brightness(0) invert(1);
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .hero .buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .hero .buttons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.8rem;
+        border-radius: 6px;
+        font-weight: 700;
+        text-decoration: none;
+        color: white;
+        transition: background 0.2s ease-in-out;
+        line-height: 1;
+      }
+
+      .hero .buttons a.primary {
+        background: #005f87;
+      }
+
+      .hero .buttons a.primary:hover {
+        background: #004a6b;
+      }
+
+      .hero .buttons a.secondary {
+        background: transparent;
+        border: 2px solid white;
+      }
+
+      .hero .buttons a.secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .hero .buttons svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        fill: white;
+        display: block;
+        margin-top: 0.05rem;
+      }
+
+      svg { width: 300px; height: 300px; overflow: visible; }
+    line.center-line { stroke: #0099cc; stroke-width: 7; stroke-linecap: round;  fill: none; stroke-dasharray: 120; stroke-dashoffset: -120; }
+    line.edge-line { stroke: #0099cc; stroke-width: 10; stroke-linecap: round;  fill: none; stroke-dasharray: 120; stroke-dashoffset: 120; }
+    .marker-node { opacity: 0; }
+    .shadow { fill: #003b5563; opacity: 0; }
+ .road-dash {
+  stroke: #ffffff;
+  stroke-width: 3;
+  stroke-dasharray: 15 10; /* Patrón visible */
+  opacity: 0;
+  
+}
+    line.main-line { stroke: #00ad51; stroke-width: 10;  fill: none; stroke-dasharray: 120; stroke-dashoffset: 120; }
+
+
+
+    </style>
+
+    <!-- Hero Section para el index -->
+    <section class="hero">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <path id="markerShape" d="M0 -10 C-4 -10 -8 -6 -8 -2 C-8 4 0 12 0 12 C0 12 8 4 8 -2 C8 -6 4 -10 0 -10 Z M0 -4 A3 3 0 1 1 -0.1 -4 Z" fill="#003c55" fill-rule="evenodd" />
+    </defs>
+
+<rect id="city-block"
+      x="60" y="100"
+      width="40" height="40"
+      fill="#00ad51"
+      opacity="0"
+      stroke="none"
+      rx="2" ry="2" transform="rotate(-202 92 110)"
+       />
+
+<rect id="semaforoRojo"
+      x="80" y="70"
+      width="30" height="30"
+      fill="#ad0000"
+      opacity="0"
+      stroke="none"
+       />
+
+<rect id="semaforoVerde"
+      x="80" y="70"
+      width="30" height="30"
+      fill="#00ad51"
+      opacity="0"
+      stroke="none"
+       />
+
+  
+<g id="lines">
+   <!-- Avenida principal (diagonal base de perspectiva) -->
+  <line class="edge-line" x1="-50" y1="180" x2="270" y2="50" />
+
+ 
+
+  <!-- Calles que cruzan la avenida (salen de ella hacia el lado opuesto) -->
+  <line class="edge-line" x1="60"  y1="175" x2="0" y2="50" />
+  <line class="center-line" x1="160" y1="175" x2="100" y2="50" />
+  <line class="edge-line" x1="250" y1="175" x2="190" y2="50" />
+
+
+  <!-- Pequeños callejones internos (detalles urbanos) -->
+  <!-- 1ª calle -->
+  <line class="center-line" x1="10"  y1="155" x2="-10"   y2="115" />
+  <!-- 2ª calle -->
+  <line class="edge-line" x1="100" y1="135" x2="45"  y2="25" />
+  <!-- 3ª calle -->
+  <line class="center-line" x1="170" y1="85" x2="155" y2="55" />
+
+  <!-- Ramales cortos que nacen de las transversales (callejones laterales) -->
+  <line class="center-line" x1="-10"  y1="115" x2="105"  y2="70" />
+  <line class="edge-line" x1="100" y1="135" x2="240" y2="155" />
+  <line class="center-line" x1="140" y1="130" x2="210" y2="102" />
+
+   <!-- Línea discontinua central dentro de la avenida -->
+  <line class="road-dash" x1="-45" y1="178" x2="265" y2="52" />
+
+  
+
+</g>
+
+<!-- Markers esparcidos -->
+<g id="outer-markers">
+  <use href="#markerShape" class="marker-node outer" x="234" y="120" />
+  <use href="#markerShape" class="marker-node outer" x="-40" y="155" />
+  <use href="#markerShape" class="marker-node" x="170" y="70" />
+      <use href="#markerShape" class="marker-node" x="120" y="115" />
+      <use href="#markerShape" class="marker-node" x="150" y="135" />
+      <use href="#markerShape" class="marker-node" x="40" y="110" />
+     
+</g>
+
+<defs>
+  <!-- Marcador original -->
+  <path id="markerShape" d="M0 -10 C-4 -10 -8 -6 -8 -2 C-8 4 0 12 0 12 C0 12 8 4 8 -2 C8 -6 4 -10 0 -10 Z M0 -4 A3 3 0 1 1 -0.1 -4 Z"
+        fill="#003c55" fill-rule="evenodd" />
+
+
+</defs>
+
+
+
+    <g id="shadows">
+      <ellipse class="shadow" cx="150" cy="82" rx="12" ry="4" />
+      <ellipse class="shadow" cx="150" cy="132" rx="12" ry="4" />
+      <ellipse class="shadow" cx="100" cy="157" rx="12" ry="4" />
+      <ellipse class="shadow" cx="50" cy="132" rx="12" ry="4" />
+      <ellipse class="shadow" cx="50" cy="82" rx="12" ry="4" />
+      <ellipse class="shadow" cx="100" cy="57" rx="12" ry="4" />
+    </g>
+
+
+
+
+
+
+
+    <g id="marker" opacity="0" transform="translate(100,90)">
+      <path d="M0 -25 C-10 -25 -20 -15 -20 -6 C-20 10 0 30 0 30 C0 30 20 10 20 -6 C20 -15 10 -25 0 -25 Z M0 -10 A7 7 0 1 1 -0.1 -10 Z" fill="#003c55" fill-rule="evenodd"  />
+    </g>
+  </svg>
+      <h1>Urban Mobility Data Hub</h1>
+      <p>Espacio de datos de movilidad urbana para la futura plataforma
+interoperable de conducción autónoma de la ciudad de Valencia.</p>
+      <div class="buttons">
+        <a href="about/" class="primary"><strong>Get Started</strong></a>
+        <a href="https://github.com/urban-mobility-data-hub" class="secondary">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 
+              0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+              -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28
+              -.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+              0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11
+              0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.03
+              2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 
+              1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 
+              1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 
+              8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            ></path>
+          </svg>
+          <strong>View on GitHub</strong>
+        </a>
+      </div>
+    </section>
+<script>
+  
+
+var mainMarkers = gsap.utils.toArray('#main-markers .marker-node');
+var outerMarkers = gsap.utils.toArray('#outer-markers .marker-node');
+
+// Crea sombras tanto para los main como para los outer
+var mainShadows = gsap.utils.toArray('#shadows .shadow');
+var outerShadows = [];
+
+
+// Reemplazar cada <use> por su <path> real (necesario para que GSAP los mueva)
+var svg = document.querySelector("svg");
+
+outerMarkers.forEach((use, i) => {
+  var refId = use.getAttribute("href") || use.getAttribute("xlink:href");
+  var refEl = svg.querySelector(refId);
+  if (!refEl) return;
+
+  // Crear un <path> real copiando el original
+  var clone = refEl.cloneNode(true);
+  clone.setAttribute("transform", `translate(${use.getAttribute("x")}, ${use.getAttribute("y")})`);
+  clone.setAttribute("class", "marker-node outer"); // mantener clase
+  svg.querySelector("#outer-markers").replaceChild(clone, use);
+
+  outerMarkers[i] = clone; // sustituir la referencia por el path real
+});
+
+
+// Crear sombras dinámicamente para los markers exteriores
+outerMarkers.forEach(m => {
+  var svg = m.closest('svg');
+  var shadow = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+  shadow.setAttribute("class", "shadow outer-shadow");
+  shadow.setAttribute("cx", m.getAttribute("x"));
+  shadow.setAttribute("cy", +m.getAttribute("y") + 22);
+  shadow.setAttribute("rx", "10");
+  shadow.setAttribute("ry", "3");
+  svg.querySelector('#shadows').appendChild(shadow);
+  outerShadows.push(shadow);
+});
+
+var allMarkers = [...outerMarkers];
+var allShadows = [...outerShadows];
+var edgeLines = gsap.utils.toArray('#lines line.edge-line');
+var centerLines = gsap.utils.toArray('#lines line.center-line');
+var roadDashes = gsap.utils.toArray('#lines line.road-dash');
+
+
+
+var tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
+
+// ------------------------------------------------------------
+// FASE 1 · Animación de “carreteras” (líneas formándose)
+// ------------------------------------------------------------
+
+// Estado inicial de líneas
+gsap.set(edgeLines, { 
+  strokeDasharray: 520, 
+  strokeDashoffset: 520 
+});
+gsap.set(roadDashes, { opacity: 0 });
+gsap.set(centerLines, { 
+  strokeDasharray: 520, 
+  strokeDashoffset: -520 
+});
+
+// Dibujar primero las líneas externas y su dash
+tl.to([...edgeLines], {
+  strokeDashoffset: 0,
+  duration: 1,
+  ease: "power2.inOut",
+  stagger: { each: 0.1, from: "random" }
+});
+
+
+
+// Luego conectar con el centro (líneas azules)
+tl.to(centerLines, {
+  strokeDashoffset: 0,
+  duration: 1,
+  ease: "power2.inOut",
+  stagger: { each: 0.08, from: "center" }
+}, "-=1");
+
+gsap.fromTo("#city-block",
+  { scale: 0.5, opacity: 0, transformOrigin: "center" },
+  { scale: 1, opacity: 0.4, duration: 0.8, ease: "power2.out", delay: 1.5 }
+);
+
+tl.to({}, { duration: 0.5 }); // 0.5 s de espera tras aparecer todos
+
+
+// ------------------------------------------------------------
+// FASE 2 · Animación de markers y sombras (tu animación original)
+// ------------------------------------------------------------
+
+// Estado inicial
+gsap.set(allShadows, { opacity: 0, scale: 0.3, transformOrigin: "center center" });
+gsap.set(allMarkers, { opacity: 0, y: -20, scale: 1.1 });
+
+// Orden aleatorio global
+var order = gsap.utils.shuffle(allMarkers.map((_, i) => i));
+
+// ------------------------------------------------------------
+// FASE 2 · Aparición y movimiento simultáneo por marker
+// ------------------------------------------------------------
+
+// Estado inicial
+gsap.set(allShadows, { opacity: 0, scale: 0.3, transformOrigin: "center center" });
+gsap.set(allMarkers, { opacity: 0, y: -20, scale: 1.1 });
+
+// Movimiento definido para cada marker
+var markerMoves = [
+  [-120, -240, 15],
+  [100, -40, 9],
+  [-100, 40, 10],
+  [150, 25, 11],
+  [-0, -0, 7],
+  [-150, -250, 16]
+];
+
+// Aparecen y se mueven uno por uno
+order.forEach((i, index) => {
+  var marker = allMarkers[i];
+  var shadow = allShadows[i];
+  var [dx, dy, dur] = markerMoves[i];
+  var delay = index === 0 ? '<0.05' : '<0.1';
+
+  // 1. Aparece la sombra
+  tl.to(shadow, {
+    opacity: 1,
+    scale: 1,
+    duration: 0.1,
+    ease: "back.out(2)",
+    zIndex: 10
+  }, delay);
+
+  // 2. Aparece el marker
+  tl.to(marker, {
+    y: 0,
+    opacity: 1,
+    scale: 1,
+    duration: 0.2,
+    ease: "power2.out"
+  }, "<0.1");
+
+  // 3. En cuanto aparece, empieza a moverse
+  tl.to(marker, {
+    x: `+=${dx}`,
+    y: `+=${dy}`,
+    duration: dur,
+    ease: "power1.inOut"
+  }, "<0.1"); // empieza casi inmediatamente
+
+  // 4. La sombra se mueve a la vez
+  tl.to(shadow, {
+    x: `+=${dx}`,
+    y: `+=${dy}`,
+    duration: dur,
+    ease: "power1.inOut"
+  }, "<");
+});
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------
+// CONTRACCIÓN FÍSICA de carreteras principales y dashes con descenso
+// ------------------------------------------------------------
+var shrinkFactor = 0.2;         // reducción global
+var verticalDrop = 30;          // cuánto baja (ajústalo a tu gusto)
+
+// Selecciona carretera principal y dash
+var linesToShrink = [edgeLines[0], ...roadDashes];
+
+// Asegura que todas tengan stroke-width directo
+linesToShrink.forEach(line => {
+  var currentWidth = line.getAttribute("stroke-width");
+  if (!currentWidth) {
+    var computed = window.getComputedStyle(line).strokeWidth;
+    line.setAttribute("stroke-width", parseFloat(computed));
+  }
+});
+
+// Desaparición hacia el centro
+tl.to(allShadows, {
+  scale: 0,
+  opacity: 0,
+  duration: 0.4,
+  ease: "power3.in",
+  transformOrigin: "center center"
+}, "-=12");
+
+tl.to(allMarkers, {
+  scale: 0,
+  opacity: 0,
+  duration: 0.4,
+  ease: "power3.in",
+  transformOrigin: "center center"
+}, "-=12");
+
+
+tl.to("#city-block",{opacity:0},
+  "-=11.9" // ← aquí controlas la superposición
+  )
+
+tl.to([edgeLines[1],edgeLines[2],edgeLines[3], edgeLines[4]], {
+  scale: 0,
+  opacity: 0,
+  duration: 0.1,
+  ease: "power3.in",
+  transformOrigin: "center center"
+}, "-=11.8");
+
+tl.to(centerLines, {
+  scale: 0,
+  opacity: 0,
+  duration: 0.1,
+  ease: "power3.in",
+  transformOrigin: "center center"
+
+}, "-=11.8");
+
+linesToShrink.forEach((line, index) => {
+  var x1 = parseFloat(line.getAttribute("x1"));
+  var y1 = parseFloat(line.getAttribute("y1"));
+  var x2 = parseFloat(line.getAttribute("x2"));
+  var y2 = parseFloat(line.getAttribute("y2"));
+
+  var midX = (x1 + x2) / 2;
+  var midY = (y1 + y2) / 2;
+
+  // Diferenciar comportamiento
+  var isMainRoad = index === 0; // primera = carretera principal
+  var isDash = !isMainRoad;
+
+  // Parámetros distintos
+  var offsetX = isMainRoad ? -20 : -17;
+  var offsetY1 = isMainRoad ? verticalDrop : verticalDrop;
+  var offsetY2 = isMainRoad ? verticalDrop + -15 : verticalDrop -15;
+  var widthMultiplier = isMainRoad ? 4 : 1.4;
+  var duration = isMainRoad ? 0.2 : 0.2;
+  var lineCap = isMainRoad ? "butt" : "butt"; // tipo de borde
+
+  // Nuevas posiciones
+  var newX1 = midX + (x1 - midX) * shrinkFactor + offsetX;
+  var newY1 = midY + (y1 - midY) * shrinkFactor + offsetY1;
+  var newX2 = midX + (x2 - midX) * shrinkFactor;
+  var newY2 = midY + (y2 - midY) * shrinkFactor + offsetY2;
+
+  var baseWidth = parseFloat(line.getAttribute("stroke-width"));
+  var targetWidth = baseWidth * widthMultiplier;
+
+  // Cambiar el tipo de cap visual inmediatamente (no animable)
+  line.setAttribute("stroke-linecap", lineCap);
+
+  // Animación GSAP
+  tl.to(line, {
+    attr: {
+      x1: newX1,
+      y1: newY1,
+      x2: newX2,
+      y2: newY2
+    },
+    strokeWidth: targetWidth,
+    duration: duration,
+    ease: "power2.inOut"
+  }, "-=11.6");
+});
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------
+// FASE 3 · Aparición del marcador central
+// ------------------------------------------------------------
+tl.fromTo('#marker',
+  { scale: 0, opacity: 0, rotate: -45, transformOrigin: 'center' },
+  { opacity: 1, scale: 1.6, rotate: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' },
+  "-=10.5" // ← aquí controlas la superposición
+).to('#marker', { scale: 1.4, duration: 0.2, ease: 'power1.out' },
+  "-=10" // ← aquí controlas la superposición
+);
+
+
+// Añadir la aparición de la línea discontinua con opacidad
+tl.to(roadDashes, {
+  opacity: 1,
+  duration: 1.5,
+  ease: "power2.inOut"
+}, "-=11.6"); // ligeramente solapada con las carreteras
+
+
+gsap.fromTo("#semaforoVerde",
+  { scale: 1, opacity: 0, transformOrigin: "center" },
+  { scale: 1, opacity: 0.4, duration: 0.1, ease: "power2.out", delay: 1.5 }, "-=11.5"
+);
+
+
+
+</script>
+
+
+
+
+    {{ page.content }}
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}

@@ -1,25 +1,24 @@
 site_name: Urban Mobility Data Hub
-site_description: "A FIWARE-based Data Space for Smart Mobility and Urban Interoperability"
-site_author: Urban Mobility Data Hub Team
-repo_url: https://github.com/urban-mobility-data-hub
+site_description: "FIWARE-based Data Space for Smart Mobility"
+repo_url: https://github.com/urban-mobility-data-hub/urban-mobility-data-hub.github.io
+
 theme:
   name: material
+  custom_dir: overrides
   palette:
     primary: blue
     accent: light blue
   logo: assets/logo.png
-  favicon: assets/favicon.png
+  favicon: assets/logo.png
   features:
     - navigation.instant
     - navigation.tabs
-    - navigation.sections
+    - content.code.copy
+    - content.tabs.link
+
 nav:
   - Home: index.md
   - About: about.md
   - Architecture: architecture.md
   - Roadmap: roadmap.md
   - Contact: contact.md
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/urban-mobility-data-hub
