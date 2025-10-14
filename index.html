@@ -70,11 +70,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#our-mission" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -323,17 +318,6 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="." class="md-nav__link md-nav__link--active">
         
   
@@ -343,51 +327,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#our-mission" class="md-nav__link">
-    Our mission
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-components" class="md-nav__link">
-    Core components
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-overview" class="md-nav__link">
-    Project overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-started" class="md-nav__link">
-    Get started
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -486,42 +425,6 @@
   
   
   
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#our-mission" class="md-nav__link">
-    Our mission
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-components" class="md-nav__link">
-    Core components
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-overview" class="md-nav__link">
-    Project overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-started" class="md-nav__link">
-    Get started
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -636,7 +539,155 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
+.getting-started {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 1200px;
+}
 
+.getting-started h2 {
+  font-size: 2rem;
+  color: #005f87;
+  margin-bottom: 0.5rem;
+}
+
+.getting-started .intro {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 3rem;
+}
+
+.steps-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.step-card {
+  flex: 1 1 300px;
+  background: white;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.step-card img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1.2rem;
+}
+
+.step-card h3 {
+  font-size: 1.3rem;
+  color: #005f87;
+  margin-bottom: 0.5rem;
+}
+
+.step-card p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.documentation-section {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 1300px;
+}
+
+.documentation-section h2 {
+  font-size: 2rem;
+  color: #005f87;
+  margin-bottom: 0.5rem;
+}
+
+.documentation-section .intro {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 3rem;
+}
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.doc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.doc-card img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.doc-card h3 {
+  font-size: 1.2rem;
+  color: #005f87;
+  margin-bottom: 0.5rem;
+}
+
+.doc-card p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.site-footer {
+  background: linear-gradient(135deg, #0077aa, #005f87);
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  padding: 1.2rem 1rem;
+  font-size: 0.95rem;
+  margin-top: 4rem;
+  margin-bottom: 0rem;
+}
+
+.site-footer a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-footer a:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* Evita hueco por el pseudo-elemento que Material añade */
+article.md-content__inner.md-typeset::after {
+  content: none !important;
+  display: none !important;
+}
       /* Hero a pantalla completa */
     .hero {
       text-align: center;
@@ -836,29 +887,27 @@
     </g>
   </svg>
       <h1>Urban Mobility Data Hub</h1>
-      <p>Espacio de datos de movilidad urbana para la futura plataforma
+      <p>Espacio de datos de movilidad urbana para la plataforma
 interoperable de conducción autónoma de la ciudad de Valencia.</p>
       <div class="buttons">
-        <a href="about/" class="primary"><strong>Get Started</strong></a>
-        <a href="https://github.com/urban-mobility-data-hub" class="secondary">
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path
-              fill-rule="evenodd"
-              d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 
-              0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-              -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28
-              -.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
-              0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11
-              0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.03
-              2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 
-              1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 
-              1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 
-              8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-            ></path>
-          </svg>
-          <strong>View on GitHub</strong>
-        </a>
-      </div>
+  <a href="about/" class="primary"><strong>Documentación</strong></a>
+  <a href="https://github.com/urban-mobility-data-hub" class="secondary">
+    <svg viewBox="0 0 24 24" aria-hidden="true" role="img">
+  <title>Enchufe</title>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Patillas -->
+    <path d="M9 2v5M15 2v5"/>
+    <!-- Cuerpo del enchufe -->
+    <rect x="6" y="7" width="12" height="8" rx="3"/>
+    <!-- Cable -->
+    <path d="M12 15v3c0 2.2-1.8 4-4 4H7"/>
+  </g>
+</svg>
+
+    <strong>Conectar</strong>
+  </a>
+</div>
+
     </section>
 <script>
   
@@ -1179,11 +1228,17 @@ gsap.fromTo("#semaforoVerde",
 
     <p><center></p>
 <h2 style="text-align:center; max-width:1500px; margin:3rem auto; line-height:1.6;">
-  <strong>Urban Mobility Data Hub</strong> es un ecosistema de datos abierto y seguro para la movilidad urbana 
-  que pretende facilitar la interoperabilidad entre actores públicos y privados, promoviendo el uso de estándares europeos y la soberanía del dato.
+  Urban Mobility Data Hub es un <strong>ecosistema de datos abierto y seguro para la movilidad urbana</strong> 
+  que pretende facilitar la interoperabilidad promoviendo el uso de estándares europeos y la soberanía del dato.
 </h2>
-<h2 style="text-align:center; max-width:1500px; margin:3rem auto; line-height:1.6;">
 
+<h2 style="text-align:center; max-width:1500px; margin:-2rem auto 2rem; line-height:1.6;">
+Proporciona una base abierta para el desarrollo de iniciativas de movilidad inteligente, impulsando la colaboración entre administraciones, empresas e instituciones de investigación y la adopción de soluciones sostenibles y basadas en datos.
+</h2>
+
+<hr />
+<h2 style="text-align:center; max-width:1500px;   margin: 5rem auto 2rem; line-height:1.6; font-size: 2rem; color: #005f87;">
+Objetivos
 </h2>
 <div class="objectives-grid">
 
@@ -1201,30 +1256,87 @@ gsap.fromTo("#semaforoVerde",
 </div>
 
 <hr />
-<h2 id="our-mission"><strong>Our mission</strong></h2>
-<ul>
-<li>Foster interoperability between public and private mobility actors.  </li>
-<li>Promote European data standards and data sovereignty.  </li>
-<li>Enable smart services and data-driven innovation in urban environments.</li>
-</ul>
+<section class="getting-started">
+  <h2>Cómo empezar</h2>
+  <p class="intro">
+    Sigue estos tres pasos para integrarte en el ecosistema del <strong>Urban Mobility Data Hub</strong>.
+  </p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <img src="assets/icono.png" alt="Registro" />
+      <h3>1. Registro</h3>
+      <p>Conecta tu organización y obtén credenciales de acceso al entorno del Hub.</p>
+    </div>
+
+    <div class="step-card">
+      <img src="assets/icono.png" alt="Publicación de datos" />
+      <h3>2. Publicación</h3>
+      <p>Registra tus activos de datos mediante el<strong> dataspace connector </strong> para compartirlos de forma segura.</p>
+    </div>
+
+    <div class="step-card">
+      <img src="assets/icono.png" alt="Consumo e integración" />
+      <h3>3. Consumo</h3>
+      <p>Descubre y utiliza datasets disponibles dentro del ecosistema, integrándolos en tus aplicaciones.</p>
+    </div>
+  </div>
+</section>
+
 <hr />
-<h2 id="core-components"><strong>Core components</strong></h2>
-<ul>
-<li><strong>Data Space Core</strong> — Provider and Consumer EDC nodes for secure data exchange.  </li>
-<li><strong>Context Broker Layer</strong> — Orion-LD brokers implementing NGSI-LD semantics.  </li>
-<li><strong>Security &amp; Governance</strong> — Keycloak identity federation and APISIX API Gateway with OIDC integration.  </li>
-<li><strong>Data Models &amp; APIs</strong> — TM Forum, NGSI-LD, and open ontologies for mobility data.  </li>
-<li><strong>Deployment</strong> — Docker Compose and Kubernetes Helm charts for reproducible setups.</li>
-</ul>
+<section class="documentation-section">
+  <h2>Documentación</h2>
+  <p class="intro">Explora las guías técnicas y componentes clave del Urban Mobility Data Hub.</p>
+
+  <div class="docs-grid">
+
+    <a href="architecture.md" class="doc-card">
+      <img src="assets/icono.png" alt="Arquitectura" />
+      <h3>Arquitectura</h3>
+      <p>Visión general de la infraestructura y sus componentes principales.</p>
+    </a>
+
+    <a href="deployment.md" class="doc-card">
+      <img src="assets/icono.png" alt="Despliegue" />
+      <h3>Guía de despliegue</h3>
+      <p>Aprende a desplegar el entorno paso a paso con FIWARE y EDC.</p>
+    </a>
+
+    <a href="apis.md" class="doc-card">
+      <img src="assets/icono.png" alt="Configuración API" />
+      <h3>Configuración de APIs</h3>
+      <p>Conecta servicios externos mediante APIs estándar TM Forum y NGSI-LD.</p>
+    </a>
+
+    <a href="security.md" class="doc-card">
+      <img src="assets/icono.png" alt="Seguridad" />
+      <h3>Seguridad y autenticación</h3>
+      <p>Gestión de accesos y control de identidades con Keycloak y OIDC.</p>
+    </a>
+
+    <a href="datasets.md" class="doc-card">
+      <img src="assets/icono.png" alt="Datasets" />
+      <h3>Gestión de datasets</h3>
+      <p>Publica, descubre y comparte activos de datos en el ecosistema.</p>
+    </a>
+
+    <a href="tutorials.md" class="doc-card">
+      <img src="assets/icono.png" alt="Tutoriales" />
+      <h3>Tutoriales</h3>
+      <p>Ejemplos prácticos para desarrolladores y administradores.</p>
+    </a>
+
+  </div>
+</section>
+
 <hr />
-<h2 id="project-overview"><strong>Project overview</strong></h2>
-<p>Developed within the framework of <strong>ValgrAI</strong> and <strong>VRAIN (UPV)</strong>, the Urban Mobility Data Hub aims to serve as a reference implementation for interoperable <strong>Data Spaces</strong> in the Valencian Region.<br />
-It provides an open foundation for smart mobility initiatives, supporting collaboration among public administrations, companies, and research institutions.</p>
-<hr />
-<h2 id="get-started"><strong>Get started</strong></h2>
-<p><a href="architecture/">Architecture overview</a> · <a href="deployment.md">Deployment guide</a> · <a href="apis.md">API configuration</a></p>
-<hr />
-<p>© 2025 Urban Mobility Data Hub — Powered by <a href="https://valgrai.eu/">ValgrAI</a> and <a href="https://vrain.upv.es/">VRAIN</a></p>
+<footer class="site-footer">
+  <p>
+    2025 Urban Mobility Data Hub — Powered by 
+    <a href="https://valgrai.eu/" target="_blank">ValgrAI</a> and 
+    <a href="https://vrain.upv.es/" target="_blank">VRAIN</a>
+  </p>
+</footer>
 <p></center></p>
   
 
