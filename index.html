@@ -12,7 +12,7 @@
       
       
       
-        <link rel="next" href="about/">
+        <link rel="next" href="stack/">
       
       
       <link rel="icon" href="assets/logo.png">
@@ -46,6 +46,8 @@
       
     
     
+      <link rel="stylesheet" href="assets/css/custom.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -58,12 +60,16 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber">
   
     
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -99,13 +105,23 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Inicio
             
           </span>
         </div>
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
       
     
     
@@ -186,7 +202,7 @@
   
     
   
-  Home
+  Inicio
 
       </a>
     </li>
@@ -198,12 +214,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="about/" class="md-tabs__link">
+      <a href="stack/" class="md-tabs__link">
         
   
     
   
-  About
+  Arquitectura
 
       </a>
     </li>
@@ -215,12 +231,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="architecture/" class="md-tabs__link">
+      <a href="deploy-guide/" class="md-tabs__link">
         
   
     
   
-  Architecture
+  Guía de despliegue
 
       </a>
     </li>
@@ -232,12 +248,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="roadmap/" class="md-tabs__link">
+      <a href="onboarding/" class="md-tabs__link">
         
   
     
   
-  Roadmap
+  Conectar al dataspace
 
       </a>
     </li>
@@ -248,13 +264,31 @@
   
   
   
+    
+    
+      <li class="md-tabs__item">
+        <a href="tokens/" class="md-tabs__link">
+          
+  
+  Usar el dataspace
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
     <li class="md-tabs__item">
-      <a href="contact/" class="md-tabs__link">
+      <a href="security/" class="md-tabs__link">
         
   
     
   
-  Contact
+  Seguridad, autenticación y autorización
 
       </a>
     </li>
@@ -322,7 +356,7 @@
         
   
   <span class="md-ellipsis">
-    Home
+    Inicio
   </span>
   
 
@@ -338,11 +372,11 @@
   
   
     <li class="md-nav__item">
-      <a href="about/" class="md-nav__link">
+      <a href="stack/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About
+    Arquitectura
   </span>
   
 
@@ -357,11 +391,11 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/" class="md-nav__link">
+      <a href="deploy-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Architecture
+    Guía de despliegue
   </span>
   
 
@@ -376,11 +410,11 @@
   
   
     <li class="md-nav__item">
-      <a href="roadmap/" class="md-nav__link">
+      <a href="onboarding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Roadmap
+    Conectar al dataspace
   </span>
   
 
@@ -394,12 +428,133 @@
   
   
   
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Usar el dataspace
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Usar el dataspace
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
     <li class="md-nav__item">
-      <a href="contact/" class="md-nav__link">
+      <a href="tokens/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Contact
+    tokens
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="datos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Datos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="politicas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Políticas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tmforum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TM Forum API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seguridad, autenticación y autorización
   </span>
   
 
@@ -479,6 +634,14 @@
         padding: 0 !important;
         }
 
+      /* Eliminar el pseudo-elemento que genera margen arriba del contenido */
+        article.md-content__inner.md-typeset::after {
+        display: none !important;
+        content: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        }
+
 
       .md-container {
         padding: 0 !important;
@@ -487,7 +650,7 @@
 
       .objectives-grid {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   justify-content: center;
   align-items: stretch;
   gap: 2rem;
@@ -505,8 +668,7 @@
   background: white;
   border-radius: 10px;
   padding: 1.8rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
 }
 
 
@@ -534,10 +696,6 @@
   color: #333;
 }
 
-.objective:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
 
 .getting-started {
   text-align: center;
@@ -621,6 +779,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  margin-top: 6rem;
 }
 
 .doc-card {
@@ -643,7 +802,7 @@
 }
 
 .doc-card img {
-  width: 80px;
+  width: 120px;
   height: auto;
   margin-bottom: 1rem;
 }
@@ -683,15 +842,35 @@
   border-color: #ffffff;
 }
 
-/* Evita hueco por el pseudo-elemento que Material añade */
-article.md-content__inner.md-typeset::after {
-  content: none !important;
+
+
+/* Ocultar footer por defecto de MkDocs Material */
+.md-footer {
   display: none !important;
 }
+
+.site-footer {
+  position: absolute;
+  bottom: -5;
+  width: 100%;
+  background: linear-gradient(135deg, #0077aa, #005f87);
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  padding: 1.2rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* añade un hueco al final del contenido para no taparlo */
+.md-content__inner {
+  padding-bottom: 120px; /* igual o mayor que la altura del footer */
+}
+
+
+
       /* Hero a pantalla completa */
     .hero {
       text-align: center;
-      padding: 2rem 2rem 3rem;
+      padding: 1rem 2rem 3rem;
       background: linear-gradient(135deg, #0099cc, #0077aa);
       color: white;
       margin: 0;
@@ -890,7 +1069,7 @@ article.md-content__inner.md-typeset::after {
       <p>Espacio de datos de movilidad urbana para la plataforma
 interoperable de conducción autónoma de la ciudad de Valencia.</p>
       <div class="buttons">
-  <a href="about/" class="primary"><strong>Documentación</strong></a>
+  <a href="stack/" class="primary"><strong>Documentación</strong></a>
   <a href="https://github.com/urban-mobility-data-hub" class="secondary">
     <svg viewBox="0 0 24 24" aria-hidden="true" role="img">
   <title>Enchufe</title>
@@ -1227,14 +1406,14 @@ gsap.fromTo("#semaforoVerde",
 
 
     <p><center></p>
-<h2 style="text-align:center; max-width:1500px; margin:3rem auto; line-height:1.6;">
+<h3 style="text-align:center; max-width:1500px; margin:3rem auto; line-height:1.6;">
   Urban Mobility Data Hub es un <strong>ecosistema de datos abierto y seguro para la movilidad urbana</strong> 
   que pretende facilitar la interoperabilidad promoviendo el uso de estándares europeos y la soberanía del dato.
-</h2>
+</h3>
 
-<h2 style="text-align:center; max-width:1500px; margin:-2rem auto 2rem; line-height:1.6;">
+<h3 style="text-align:center; max-width:1500px; margin:-2rem auto 2rem; line-height:1.6;">
 Proporciona una base abierta para el desarrollo de iniciativas de movilidad inteligente, impulsando la colaboración entre administraciones, empresas e instituciones de investigación y la adopción de soluciones sostenibles y basadas en datos.
-</h2>
+</h3>
 
 <hr />
 <h2 style="text-align:center; max-width:1500px;   margin: 5rem auto 2rem; line-height:1.6; font-size: 2rem; color: #005f87;">
@@ -1256,6 +1435,7 @@ Objetivos
 </div>
 
 <hr />
+<!--
 <section class="getting-started">
   <h2>Cómo empezar</h2>
   <p class="intro">
@@ -1283,53 +1463,52 @@ Objetivos
   </div>
 </section>
 
-<hr />
+---
+-->
 <section class="documentation-section">
   <h2>Documentación</h2>
-  <p class="intro">Explora las guías técnicas y componentes clave del Urban Mobility Data Hub.</p>
-
   <div class="docs-grid">
 
-    <a href="architecture.md" class="doc-card">
-      <img src="assets/icono.png" alt="Arquitectura" />
+    <a href="./stack" class="doc-card">
+      <img src="./assets/arquitectura-logo.png" alt="Arquitectura" />
       <h3>Arquitectura</h3>
       <p>Visión general de la infraestructura y sus componentes principales.</p>
     </a>
 
-    <a href="deployment.md" class="doc-card">
-      <img src="assets/icono.png" alt="Despliegue" />
+    <a href="./deploy-guide" class="doc-card">
+      <img src="./assets/deploy-logo.png" alt="Despliegue" />
       <h3>Guía de despliegue</h3>
-      <p>Aprende a desplegar el entorno paso a paso con FIWARE y EDC.</p>
+      <p>Como desplegar el entorno paso a paso.</p>
     </a>
 
-    <a href="apis.md" class="doc-card">
-      <img src="assets/icono.png" alt="Configuración API" />
-      <h3>Configuración de APIs</h3>
-      <p>Conecta servicios externos mediante APIs estándar TM Forum y NGSI-LD.</p>
+    <a href="./tokens" class="doc-card">
+      <img src="./assets/usar-logo.png" alt="Uso del Dataspace" />
+      <h3>Uso del Dataspace</h3>
+      <p>Publicar datasets, negociar y consumir datos dentro del entorno del Dataspace.</p>
     </a>
 
-    <a href="security.md" class="doc-card">
-      <img src="assets/icono.png" alt="Seguridad" />
+
+    <a href="./security" class="doc-card">
+      <img src="./assets/seguridad-logo.png" alt="Seguridad" />
       <h3>Seguridad y autenticación</h3>
-      <p>Gestión de accesos y control de identidades con Keycloak y OIDC.</p>
+      <p>Gestión de accesos y control de identidades con Keycloak y OIDC y control de acceso por políticas.</p>
     </a>
 
-    <a href="datasets.md" class="doc-card">
-      <img src="assets/icono.png" alt="Datasets" />
-      <h3>Gestión de datasets</h3>
+    <a href="./marketplace" class="doc-card">
+      <img src="./assets/tienda-logo.png" alt="Marketplace" />
+      <h3>Marketplace</h3>
       <p>Publica, descubre y comparte activos de datos en el ecosistema.</p>
     </a>
 
-    <a href="tutorials.md" class="doc-card">
-      <img src="assets/icono.png" alt="Tutoriales" />
-      <h3>Tutoriales</h3>
-      <p>Ejemplos prácticos para desarrolladores y administradores.</p>
+    <a href="./onboarding" class="doc-card">
+      <img src="./assets/onboarding-logo.png" alt="Onboarding" />
+      <h3>Onboarding</h3>
+      <p>Como formar parte del espacio de datos.</p>
     </a>
 
   </div>
 </section>
 
-<hr />
 <footer class="site-footer">
   <p>
     2025 Urban Mobility Data Hub — Powered by 
@@ -1373,7 +1552,7 @@ Objetivos
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="assets/javascripts/bundle.4e0fa4ba.min.js"></script>

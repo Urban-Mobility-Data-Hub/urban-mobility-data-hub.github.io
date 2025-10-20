@@ -11,21 +11,25 @@
       
       
       
+        <link rel="prev" href="..">
       
       
-      <link rel="icon" href="/assets/logo.png">
+        <link rel="next" href="../deploy-guide/">
+      
+      
+      <link rel="icon" href="../assets/logo.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
     
     
       
-        <title>Urban Mobility Data Hub</title>
+        <title>Arquitectura - Urban Mobility Data Hub</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.9f615399.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.9f615399.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.649f08f9.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.649f08f9.min.css">
       
       
 
@@ -44,9 +48,9 @@
       
     
     
-      <link rel="stylesheet" href="/assets/css/custom.css">
+      <link rel="stylesheet" href="../assets/css/custom.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,6 +78,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#componentes-principales" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -84,9 +93,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Urban Mobility Data Hub" class="md-header__button md-logo" aria-label="Urban Mobility Data Hub" data-md-component="logo">
+    <a href=".." title="Urban Mobility Data Hub" class="md-header__button md-logo" aria-label="Urban Mobility Data Hub" data-md-component="logo">
       
-  <img src="/assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -103,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Arquitectura
             
           </span>
         </div>
@@ -193,7 +202,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
     
@@ -208,9 +217,11 @@
         
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="/stack/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
     
@@ -227,7 +238,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/deploy-guide/" class="md-tabs__link">
+      <a href="../deploy-guide/" class="md-tabs__link">
         
   
     
@@ -244,7 +255,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/onboarding/" class="md-tabs__link">
+      <a href="../onboarding/" class="md-tabs__link">
         
   
     
@@ -263,7 +274,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/tokens/" class="md-tabs__link">
+        <a href="../tokens/" class="md-tabs__link">
           
   
   Usar el dataspace
@@ -279,7 +290,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/security/" class="md-tabs__link">
+      <a href="../security/" class="md-tabs__link">
         
   
     
@@ -302,7 +313,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -313,9 +326,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Urban Mobility Data Hub" class="md-nav__button md-logo" aria-label="Urban Mobility Data Hub" data-md-component="logo">
+    <a href=".." title="Urban Mobility Data Hub" class="md-nav__button md-logo" aria-label="Urban Mobility Data Hub" data-md-component="logo">
       
-  <img src="/assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     Urban Mobility Data Hub
@@ -341,7 +354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -358,9 +371,27 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/stack/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Arquitectura
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -369,6 +400,38 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-principales" class="md-nav__link">
+    Componentes principales
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis-principales" class="md-nav__link">
+    APIs principales
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -379,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/deploy-guide/" class="md-nav__link">
+      <a href="../deploy-guide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -398,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/onboarding/" class="md-nav__link">
+      <a href="../onboarding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -451,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tokens/" class="md-nav__link">
+      <a href="../tokens/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -471,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/datos/" class="md-nav__link">
+      <a href="../datos/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -491,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/politicas/" class="md-nav__link">
+      <a href="../politicas/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -511,7 +574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/tmforum/" class="md-nav__link">
+      <a href="../tmforum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -538,7 +601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/security/" class="md-nav__link">
+      <a href="../security/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -559,7 +622,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -568,6 +633,28 @@
   
   
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-principales" class="md-nav__link">
+    Componentes principales
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis-principales" class="md-nav__link">
+    APIs principales
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -579,7 +666,158 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+  
+    
+                  
+
+  
+  
+
+
+  <h1>Arquitectura</h1>
+
+<p><img alt="Diagrama de componentes" src="../assets/diagrama-componentes.svg" /></p>
+<p>Urban Mobility Data Hub (UMDH) se construye sobre una arquitectura modular que implementa los principios de los Data Spaces, garantizando interoperabilidad, trazabilidad y control de acceso en el intercambio de datos.</p>
+<h2 id="componentes-principales">Componentes principales</h2>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Rol</th>
+<th>Campo en el diagrama</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VCVerifier</strong></td>
+<td>Valida las <em>Verifiable Credentials (VCs)</em> y las intercambia por tokens de acceso.</td>
+<td>Verifier</td>
+<td><a href="https://github.com/FIWARE/VCVerifier">FIWARE/VCVerifier</a></td>
+</tr>
+<tr>
+<td><strong>credentials-config-service</strong></td>
+<td>Contiene la información sobre qué VCs son necesarias para acceder a cada servicio.</td>
+<td>PRP/PAP (autenticación)</td>
+<td><a href="https://github.com/FIWARE/credentials-config-service">FIWARE/credentials-config-service</a></td>
+</tr>
+<tr>
+<td><strong>Keycloak</strong></td>
+<td>Emisor de <em>Verifiable Credentials</em> en el lado del consumidor y proveedor de identidad (IdP) basado en OIDC/OAuth2.</td>
+<td>Issuer</td>
+<td><a href="https://www.keycloak.org">keycloak.org</a></td>
+</tr>
+<tr>
+<td><strong>Scorpio (Orion-LD)</strong></td>
+<td><em>Context Broker</em> encargado de la gestión semántica de datos mediante NGSI-LD.</td>
+<td>Context Broker</td>
+<td><a href="https://github.com/ScorpioBroker/ScorpioBroker">ScorpioBroker</a></td>
+</tr>
+<tr>
+<td><strong>trusted-issuers-list</strong></td>
+<td>Actúa como <em>Trusted Issuers List</em>, ofreciendo una API compatible con el registro de emisores de confianza (EBSI Trusted Issuers Registry API).</td>
+<td>Lista local de emisores de confianza</td>
+<td><a href="https://github.com/FIWARE/trusted-issuers-list">FIWARE/trusted-issuers-list</a></td>
+</tr>
+<tr>
+<td><strong>APISIX</strong></td>
+<td>Pasarela API (API Gateway) que funciona como <strong>PEP (Policy Enforcement Point)</strong> e integra un plugin de OPA para control de acceso.</td>
+<td>PEP</td>
+<td><a href="https://apisix.apache.org/">apisix.apache.org</a> / <a href="https://apisix.apache.org/docs/apisix/plugins/opa/">plugin OPA</a></td>
+</tr>
+<tr>
+<td><strong>OPA (Open Policy Agent)</strong></td>
+<td>Motor de políticas que actúa como <strong>PDP (Policy Decision Point)</strong> en el <em>sidecar</em> del API Gateway. Evalúa las políticas de autorización.</td>
+<td>PDP</td>
+<td><a href="https://www.openpolicyagent.org/">openpolicyagent.org</a></td>
+</tr>
+<tr>
+<td><strong>odrl-pap</strong></td>
+<td>Permite configurar políticas ODRL que serán utilizadas por OPA para la autorización.</td>
+<td>PRP/PAP (autorización)</td>
+<td><a href="https://github.com/wistefan/odrl-pap">wistefan/odrl-pap</a></td>
+</tr>
+<tr>
+<td><strong>tmforum-api</strong></td>
+<td>Implementación de las APIs de TM Forum para la gestión de contratos, ofertas y productos.</td>
+<td>Gestión de contratos</td>
+<td><a href="https://github.com/FIWARE/tmforum-api">FIWARE/tmforum-api</a></td>
+</tr>
+<tr>
+<td><strong>contract-management</strong></td>
+<td>Servicio de escucha y notificación de eventos relacionados con la gestión de contratos provenientes de TM Forum.</td>
+<td>Gestión de contratos</td>
+<td><a href="https://github.com/FIWARE/contract-management">FIWARE/contract-management</a></td>
+</tr>
+<tr>
+<td><strong>MySQL</strong></td>
+<td>Base de datos relacional utilizada para almacenamiento estructurado de configuraciones o contratos.</td>
+<td>Base de datos</td>
+<td><a href="https://www.mysql.com">mysql.com</a></td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>Base de datos relacional avanzada para almacenamiento estructurado.</td>
+<td>Base de datos</td>
+<td><a href="https://www.postgresql.org">postgresql.org</a></td>
+</tr>
+<tr>
+<td><strong>PostGIS</strong></td>
+<td>Extensión espacial de PostgreSQL que añade soporte geoespacial y consultas sobre datos geográficos.</td>
+<td>Base de datos</td>
+<td><a href="https://postgis.net/">postgis.net</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><img alt="Diagrama de apis" src="../assets/diagrama-general-apis.svg" /></p>
+<hr />
+<h2 id="apis-principales">APIs principales</h2>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Rol</th>
+<th>Responsabilidad</th>
+<th>Ejemplos de Endpoints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data API</strong></td>
+<td>Gestión de <em>data assets</em> (recursos reales de datos).</td>
+<td>Registrar, exponer y servir datos compartidos dentro del Dataspace.<br><br>Incluye:<br>• Entidades NGSI-LD, datasets o flujos de datos.<br>• Acceso a los endpoints reales.<br>• CRUD de assets (crear, consultar, actualizar, eliminar).<br>• Servicios de descubrimiento por ID o tipo de recurso.</td>
+<td><code>/data/assets</code> → lista de datasets disponibles.<br><code>/data/entities</code> → acceso a datos NGSI-LD.</td>
+</tr>
+<tr>
+<td><strong>Contract API</strong></td>
+<td>Gestión de ofertas y contratos de uso de los datos.</td>
+<td>Orquestar el ciclo de vida de los <em>data offerings</em> desde su definición hasta la negociación.<br><br>Incluye:<br>• ProductSpecification, ProductOffering y Agreement (TM Forum).<br>• Registro de ofertas disponibles y condiciones.<br>• Iniciar, aceptar o rechazar negociaciones.<br>• Generar Data Agreements y vincularlos a Data Assets.</td>
+<td><code>/contract/offerings</code> → lista de ofertas.<br><code>/contract/agreements</code> → contratos activos.<br><code>/contract/negotiations</code> → gestión de negociaciones.</td>
+</tr>
+<tr>
+<td><strong>Authorization API</strong></td>
+<td>Control de acceso y aplicación de políticas (OPA/PDP).</td>
+<td>Evaluar si una solicitud cumple las condiciones de seguridad y contrato.<br><br>Incluye:<br>• Integración con OPA (Open Policy Agent).<br>• Evaluación de políticas (PDP/PIP/PAP).<br>• Validación de tokens OIDC y claims.<br>• Envío de decisiones “permit/deny” a APISIX.</td>
+<td><code>/authz/evaluate</code> → recibe token y contexto, devuelve <em>permit/deny</em>.</td>
+</tr>
+<tr>
+<td><strong>Authentication API</strong></td>
+<td>Identidad y emisión de tokens o credenciales.</td>
+<td>Gestionar la autenticación de usuarios, aplicaciones o conectores.<br><br>Incluye:<br>• Integración con Keycloak (OIDC, OAuth2).<br>• Emisión y validación de tokens JWT.<br>• Verifiable Credentials (OID4VC).<br>• Endpoints de login, refresh, revoke.</td>
+<td><code>/authn/token</code> → login.<br><code>/authn/validate</code> → validar token.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+  
+
+
+
+                
+  
 
               </article>
             </div>
@@ -614,10 +852,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "/assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
       
     
   </body>

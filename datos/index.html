@@ -1,0 +1,1109 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FIWARE-based Data Space for Smart Mobility">
+      
+      
+      
+      
+        <link rel="prev" href="../tokens/">
+      
+      
+        <link rel="next" href="../politicas/">
+      
+      
+      <link rel="icon" href="../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>Datos - Urban Mobility Data Hub</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9f615399.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.649f08f9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#acceso-protegido-mediante-apisix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Urban Mobility Data Hub" class="md-header__button md-logo" aria-label="Urban Mobility Data Hub" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Urban Mobility Data Hub
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Datos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/urban-mobility-data-hub/urban-mobility-data-hub.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stack/" class="md-tabs__link">
+        
+  
+    
+  
+  Arquitectura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../deploy-guide/" class="md-tabs__link">
+        
+  
+    
+  
+  Guía de despliegue
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../onboarding/" class="md-tabs__link">
+        
+  
+    
+  
+  Conectar al dataspace
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../tokens/" class="md-tabs__link">
+          
+  
+  Usar el dataspace
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../security/" class="md-tabs__link">
+        
+  
+    
+  
+  Seguridad, autenticación y autorización
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Urban Mobility Data Hub" class="md-nav__button md-logo" aria-label="Urban Mobility Data Hub" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Urban Mobility Data Hub
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/urban-mobility-data-hub/urban-mobility-data-hub.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arquitectura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía de despliegue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conectar al dataspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Usar el dataspace
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Usar el dataspace
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tokens/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tokens
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Datos
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Datos
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acceso-protegido-mediante-apisix" class="md-nav__link">
+    Acceso protegido mediante APISIX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-disponibles-en-ngsi-ldv1entities" class="md-nav__link">
+    Operaciones disponibles en /ngsi-ld/v1/entities
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones disponibles en /ngsi-ld/v1/entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtener-un-token-de-acceso-oid4vp" class="md-nav__link">
+    Obtener un token de acceso (OID4VP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-entidad-create" class="md-nav__link">
+    Crear una entidad (Create)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-todas-las-entidades-read-all" class="md-nav__link">
+    Consultar todas las entidades (Read All)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-una-entidad-especifica-read-by-id" class="md-nav__link">
+    Consultar una entidad específica (Read by ID)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-por-tipo-o-atributos-query" class="md-nav__link">
+    Consultar por tipo o atributos (Query)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actualizar-atributos-update" class="md-nav__link">
+    Actualizar atributos (Update)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminar-una-entidad-delete" class="md-nav__link">
+    Eliminar una entidad (Delete)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suscripciones-ngsi-ld-subscriptions" class="md-nav__link">
+    Suscripciones (NGSI-LD Subscriptions)
+  </a>
+  
+    <nav class="md-nav" aria-label="Suscripciones (NGSI-LD Subscriptions)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-suscripcion" class="md-nav__link">
+    Crear una suscripción
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-suscripciones-existentes" class="md-nav__link">
+    Consultar suscripciones existentes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-una-suscripcion-especifica" class="md-nav__link">
+    Consultar una suscripción específica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminar-una-suscripcion" class="md-nav__link">
+    Eliminar una suscripción
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notificaciones-al-consumidor" class="md-nav__link">
+    Notificaciones al consumidor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notas" class="md-nav__link">
+    Notas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../politicas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Políticas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmforum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TM Forum API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seguridad, autenticación y autorización
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acceso-protegido-mediante-apisix" class="md-nav__link">
+    Acceso protegido mediante APISIX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-disponibles-en-ngsi-ldv1entities" class="md-nav__link">
+    Operaciones disponibles en /ngsi-ld/v1/entities
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones disponibles en /ngsi-ld/v1/entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtener-un-token-de-acceso-oid4vp" class="md-nav__link">
+    Obtener un token de acceso (OID4VP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-entidad-create" class="md-nav__link">
+    Crear una entidad (Create)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-todas-las-entidades-read-all" class="md-nav__link">
+    Consultar todas las entidades (Read All)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-una-entidad-especifica-read-by-id" class="md-nav__link">
+    Consultar una entidad específica (Read by ID)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-por-tipo-o-atributos-query" class="md-nav__link">
+    Consultar por tipo o atributos (Query)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actualizar-atributos-update" class="md-nav__link">
+    Actualizar atributos (Update)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminar-una-entidad-delete" class="md-nav__link">
+    Eliminar una entidad (Delete)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suscripciones-ngsi-ld-subscriptions" class="md-nav__link">
+    Suscripciones (NGSI-LD Subscriptions)
+  </a>
+  
+    <nav class="md-nav" aria-label="Suscripciones (NGSI-LD Subscriptions)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-suscripcion" class="md-nav__link">
+    Crear una suscripción
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-suscripciones-existentes" class="md-nav__link">
+    Consultar suscripciones existentes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultar-una-suscripcion-especifica" class="md-nav__link">
+    Consultar una suscripción específica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminar-una-suscripcion" class="md-nav__link">
+    Eliminar una suscripción
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notificaciones-al-consumidor" class="md-nav__link">
+    Notificaciones al consumidor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notas" class="md-nav__link">
+    Notas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+    
+                  
+
+  
+  
+
+
+  <h1>Datos</h1>
+
+<h2 id="acceso-protegido-mediante-apisix">Acceso protegido mediante APISIX</h2>
+<p>Los endpoints de datos del dataspace están protegidos por el <strong>API Gateway (APISIX)</strong>, que actúa como <strong>Policy Enforcement Point (PEP)</strong>.<br />
+Esto significa que cualquier operación sobre datos (lectura o escritura) requiere un <strong>token OIDC válido</strong> emitido por el sistema de autenticación.</p>
+<hr />
+<h2 id="operaciones-disponibles-en-ngsi-ldv1entities">Operaciones disponibles en <code>/ngsi-ld/v1/entities</code></h2>
+<p>El <strong>Context Broker (Scorpio)</strong> implementa el estándar <strong>NGSI-LD</strong>, lo que permite gestionar entidades semánticas con operaciones CRUD (Create, Read, Update, Delete).<br />
+Todas estas llamadas pueden hacerse a través del gateway <strong>APISIX</strong>, autenticadas mediante <strong>Bearer Token OIDC</strong>.</p>
+<hr />
+<h3 id="obtener-un-token-de-acceso-oid4vp">Obtener un token de acceso (OID4VP)</h3>
+<p>Antes de interactuar con los datos, es necesario obtener un <strong>Access Token</strong> autenticado mediante el flujo <strong>OID4VP</strong> (<em>OpenID for Verifiable Presentations</em>).</p>
+<p>Ejemplo de obtención de token:</p>
+<pre><code class="language-bash">    export ACCESS_TOKEN=$(./doc/scripts/get_access_token_oid4vp.sh \
+    http://mp-data-service.127.0.0.1.nip.io:8080 \
+    $OPERATOR_CREDENTIAL \
+    operator)
+</code></pre>
+<hr />
+<h3 id="crear-una-entidad-create">Crear una entidad (Create)</h3>
+<p>Una vez obtenido el token, puedes crear una entidad NGSI-LD dentro del Scorpio Broker, a través del endpoint protegido de APISIX:</p>
+<pre><code class="language-bash">    curl -X POST http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/entities \
+    -H 'Accept: */*' \
+    -H 'Content-Type: application/json' \
+    -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
+    -d '{
+        &quot;id&quot;: &quot;urn:ngsi-ld:K8SCluster:fancy-marketplace&quot;,
+        &quot;type&quot;: &quot;K8SCluster&quot;,
+        &quot;name&quot;: {
+        &quot;type&quot;: &quot;Property&quot;,
+        &quot;value&quot;: &quot;Fancy Marketplace Cluster&quot;
+        },
+        &quot;numNodes&quot;: {
+        &quot;type&quot;: &quot;Property&quot;,
+        &quot;value&quot;: &quot;3&quot;
+        },
+        &quot;k8sVersion&quot;: {
+        &quot;type&quot;: &quot;Property&quot;,
+        &quot;value&quot;: &quot;1.26.0&quot;
+        }
+    }'
+</code></pre>
+<hr />
+<h3 id="consultar-todas-las-entidades-read-all">Consultar todas las entidades (Read All)</h3>
+<pre><code class="language-bash">    curl -X GET http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/entities \
+    -H &quot;Accept: application/json&quot; \
+    -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot;
+</code></pre>
+<p>Devuelve una lista de todas las entidades visibles para el usuario autenticado (según las políticas aplicadas).</p>
+<h3 id="consultar-una-entidad-especifica-read-by-id">Consultar una entidad específica (Read by ID)</h3>
+<pre><code class="language-bash">    curl -X GET http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/entities/urn:ngsi-ld:K8SCluster:fancy-marketplace \
+    -H &quot;Accept: application/json&quot; \
+    -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot;
+</code></pre>
+<p>Obtiene los detalles de una entidad concreta, incluyendo sus propiedades y relaciones.</p>
+<h3 id="consultar-por-tipo-o-atributos-query">Consultar por tipo o atributos (Query)</h3>
+<pre><code class="language-bash">    curl -G http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/entities \
+    -H &quot;Accept: application/json&quot; \
+    -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
+    --data-urlencode 'type=K8SCluster'
+</code></pre>
+<p>Puedes usar parámetros como:</p>
+<ul>
+<li>
+<p>type — filtra por tipo de entidad.</p>
+</li>
+<li>
+<p>q — aplica condiciones sobre atributos (q=numNodes&gt;2).</p>
+</li>
+<li>
+<p>attrs — selecciona atributos específicos.</p>
+</li>
+<li>
+<p>options=keyValues — devuelve un formato simplificado.</p>
+</li>
+</ul>
+<h3 id="actualizar-atributos-update">Actualizar atributos (Update)</h3>
+<pre><code class="language-bash">    curl -X PATCH http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/entities/urn:ngsi-ld:K8SCluster:fancy-marketplace/attrs \
+    -H &quot;Content-Type: application/json&quot; \
+    -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
+    -d '{
+        &quot;numNodes&quot;: { &quot;type&quot;: &quot;Property&quot;, &quot;value&quot;: 5 }
+    }'
+</code></pre>
+<p>Modifica uno o varios atributos de una entidad existente.</p>
+<h3 id="eliminar-una-entidad-delete">Eliminar una entidad (Delete)</h3>
+<pre><code class="language-bash">    curl -X DELETE http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/entities/urn:ngsi-ld:K8SCluster:fancy-marketplace \
+    -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot;
+</code></pre>
+<p>Elimina la entidad indicada del Context Broker (si la política de acceso lo permite).</p>
+<h2 id="suscripciones-ngsi-ld-subscriptions">Suscripciones (NGSI-LD Subscriptions)</h2>
+<p>Las suscripciones permiten recibir notificaciones automáticas cuando una entidad del <strong>Context Broker (Scorpio)</strong> cambia, cumple ciertas condiciones o deja de existir.<br />
+Cada suscripción define:</p>
+<ul>
+<li>Qué entidades o tipos quiere observar.  </li>
+<li>Qué condiciones deben cumplirse.  </li>
+<li>A qué endpoint se deben enviar las notificaciones.</li>
+</ul>
+<hr />
+<h3 id="crear-una-suscripcion">Crear una suscripción</h3>
+<pre><code class="language-bash">curl -X POST http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/subscriptions \
+  -H &quot;Content-Type: application/ld+json&quot; \
+  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
+  -d '{
+    &quot;id&quot;: &quot;urn:ngsi-ld:Subscription:K8SClusterUpdates&quot;,
+    &quot;type&quot;: &quot;Subscription&quot;,
+    &quot;entities&quot;: [{
+      &quot;type&quot;: &quot;K8SCluster&quot;
+    }],
+    &quot;watchedAttributes&quot;: [&quot;numNodes&quot;],
+    &quot;q&quot;: &quot;numNodes&gt;2&quot;,
+    &quot;notification&quot;: {
+      &quot;endpoint&quot;: {
+        &quot;uri&quot;: &quot;http://consumer-service.127.0.0.1.nip.io:8080/notify&quot;,
+        &quot;accept&quot;: &quot;application/json&quot;
+      },
+      &quot;format&quot;: &quot;normalized&quot;
+    },
+    &quot;throttling&quot;: 5
+  }'
+</code></pre>
+<p>Qué hace este ejemplo:</p>
+<ul>
+<li>
+<p>Observa todas las entidades de tipo K8SCluster.</p>
+</li>
+<li>
+<p>Solo envía notificaciones si el atributo numNodes cambia y cumple numNodes&gt;2.</p>
+</li>
+<li>
+<p>Envia un POST al endpoint http://consumer-service.../notify.</p>
+</li>
+<li>
+<p>Usa throttling: 5 para no enviar más de una notificación cada 5 s.</p>
+</li>
+</ul>
+<h3 id="consultar-suscripciones-existentes">Consultar suscripciones existentes</h3>
+<pre><code class="language-bash">curl -X GET http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/subscriptions \
+  -H &quot;Accept: application/json&quot; \
+  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot;
+</code></pre>
+<p>Devuelve todas las suscripciones visibles para el usuario autenticado.</p>
+<h3 id="consultar-una-suscripcion-especifica">Consultar una suscripción específica</h3>
+<pre><code class="language-bash">curl -X GET http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/subscriptions/urn:ngsi-ld:Subscription:K8SClusterUpdates \
+  -H &quot;Accept: application/json&quot; \
+  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot;
+</code></pre>
+<h3 id="eliminar-una-suscripcion">Eliminar una suscripción</h3>
+<pre><code class="language-bash">curl -X DELETE http://mp-data-service.127.0.0.1.nip.io:8080/ngsi-ld/v1/subscriptions/urn:ngsi-ld:Subscription:K8SClusterUpdates \
+  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot;
+</code></pre>
+<h3 id="notificaciones-al-consumidor">Notificaciones al consumidor</h3>
+<p>Cuando se cumpla la condición definida, Scorpio enviará una notificación al endpoint configurado:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;urn:ngsi-ld:K8SCluster:fancy-marketplace&quot;,
+  &quot;type&quot;: &quot;K8SCluster&quot;,
+  &quot;numNodes&quot;: { &quot;type&quot;: &quot;Property&quot;, &quot;value&quot;: 4 },
+  &quot;observedAt&quot;: &quot;2025-10-14T09:30:00Z&quot;,
+  &quot;@context&quot;: &quot;https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld&quot;
+}
+</code></pre>
+<p>El servicio receptor (/notify) debe responder con 200 OK para confirmar la recepción.</p>
+<h3 id="notas">Notas</h3>
+<p>Todas las operaciones pasan por APISIX, que valida el token OIDC con Keycloak/Verifier.</p>
+<p>El Policy Engine (OPA) determina si el usuario tiene permiso para leer o modificar las entidades solicitadas.</p>
+<p>Por defecto todo es 403 Unathorized, si no se crea una política establecida que permita hacer algo.</p>
+
+
+
+
+
+                
+  
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+    
+  </body>
+</html>

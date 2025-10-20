@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../onboarding/">
+      
+      
+        <link rel="next" href="../datos/">
       
       
       <link rel="icon" href="../assets/logo.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Contacto - Urban Mobility Data Hub</title>
+        <title>tokens - Urban Mobility Data Hub</title>
       
     
     
@@ -75,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contacto" class="md-skip">
+        <a href="#tokens-y-credenciales" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contacto
+              tokens
             
           </span>
         </div>
@@ -264,11 +268,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../tokens/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   Usar el dataspace
@@ -420,17 +426,19 @@
       
   
   
+    
+  
   
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
@@ -443,7 +451,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Usar el dataspace
@@ -454,9 +462,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../tokens/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    tokens
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -465,6 +493,115 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-obtener-una-credencial-verificable-oid4vc" class="md-nav__link">
+    1. Obtener una credencial verificable (OID4VC)
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Obtener una credencial verificable (OID4VC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-solicitar-un-access-token-inicial" class="md-nav__link">
+    Paso 1: Solicitar un Access Token inicial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-obtener-la-oferta-de-credencial-credential-offer-uri" class="md-nav__link">
+    Paso 2: Obtener la oferta de credencial (Credential Offer URI)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-obtener-el-codigo-pre-autorizado" class="md-nav__link">
+    Paso 3: Obtener el código pre-autorizado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-intercambiar-el-codigo-por-un-credential-access-token" class="md-nav__link">
+    Paso 4: Intercambiar el código por un Credential Access Token
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-solicitar-la-credencial-verificable-vc" class="md-nav__link">
+    Paso 5: Solicitar la credencial verificable (VC)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-obtener-un-access-token-oid4vp" class="md-nav__link">
+    2. Obtener un Access Token (OID4VP)
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Obtener un Access Token (OID4VP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-obtener-el-endpoint-de-token" class="md-nav__link">
+    Paso 1: Obtener el endpoint de token
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-crear-una-verifiable-presentation-vp" class="md-nav__link">
+    Paso 2: Crear una Verifiable Presentation (VP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-construir-y-firmar-el-jwt-es256" class="md-nav__link">
+    Paso 3: Construir y firmar el JWT (ES256)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-solicitar-el-access-token" class="md-nav__link">
+    Paso 4: Solicitar el Access Token
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -576,6 +713,103 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-obtener-una-credencial-verificable-oid4vc" class="md-nav__link">
+    1. Obtener una credencial verificable (OID4VC)
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Obtener una credencial verificable (OID4VC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-solicitar-un-access-token-inicial" class="md-nav__link">
+    Paso 1: Solicitar un Access Token inicial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-obtener-la-oferta-de-credencial-credential-offer-uri" class="md-nav__link">
+    Paso 2: Obtener la oferta de credencial (Credential Offer URI)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-obtener-el-codigo-pre-autorizado" class="md-nav__link">
+    Paso 3: Obtener el código pre-autorizado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-intercambiar-el-codigo-por-un-credential-access-token" class="md-nav__link">
+    Paso 4: Intercambiar el código por un Credential Access Token
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-solicitar-la-credencial-verificable-vc" class="md-nav__link">
+    Paso 5: Solicitar la credencial verificable (VC)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-obtener-un-access-token-oid4vp" class="md-nav__link">
+    2. Obtener un Access Token (OID4VP)
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Obtener un Access Token (OID4VP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-obtener-el-endpoint-de-token" class="md-nav__link">
+    Paso 1: Obtener el endpoint de token
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-crear-una-verifiable-presentation-vp" class="md-nav__link">
+    Paso 2: Crear una Verifiable Presentation (VP)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-construir-y-firmar-el-jwt-es256" class="md-nav__link">
+    Paso 3: Construir y firmar el JWT (ES256)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-solicitar-el-access-token" class="md-nav__link">
+    Paso 4: Solicitar el Access Token
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -594,13 +828,83 @@
   
 
 
-<h1 id="contacto">Contacto</h1>
-<p>📍 <strong>Urban Mobility Data Hub</strong><br />
-Proyecto impulsado por <strong>ValgrAI</strong></p>
-<p>📧 <a href="mailto:cristian.borgoñoz@valgrai.eu">cristian.borgoñoz@valgrai.eu</a><br />
-🌐 <a href="https://urban-mobility-data-hub.github.io">https://urban-mobility-data-hub.github.io</a></p>
+<h1 id="tokens-y-credenciales">🔐 Tokens y credenciales</h1>
+<p>El dataspace utiliza <strong>OpenID for Verifiable Credentials (OID4VC)</strong> y <strong>OpenID for Verifiable Presentations (OID4VP)</strong> para autenticar a los participantes mediante <strong>credenciales verificables (VCs)</strong>.<br />
+A continuación se muestra cómo obtener una credencial verificable y un token OIDC para acceder a APIs protegidas.</p>
 <hr />
-<p><strong>GitHub:</strong> <a href="https://github.com/urban-mobility-data-hub">urban-mobility-data-hub</a></p>
+<h2 id="1-obtener-una-credencial-verificable-oid4vc">1. Obtener una credencial verificable (OID4VC)</h2>
+<h3 id="paso-1-solicitar-un-access-token-inicial">Paso 1: Solicitar un Access Token inicial</h3>
+<pre><code class="language-bash">export ACCESS_TOKEN=$(curl -s -k -x localhost:8888 -X POST \
+  &quot;$ISSUER_URL/realms/test-realm/protocol/openid-connect/token&quot; \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data grant_type=password \
+  --data client_id=account-console \
+  --data username=operator \
+  --data password=test | jq -r '.access_token')
+</code></pre>
+<h3 id="paso-2-obtener-la-oferta-de-credencial-credential-offer-uri">Paso 2: Obtener la oferta de credencial (Credential Offer URI)</h3>
+<pre><code class="language-bash">export OFFER_URI=$(curl -s -k -x localhost:8888 -X GET \
+  &quot;$ISSUER_URL/realms/test-realm/protocol/oid4vc/credential-offer-uri?credential_configuration_id=operator_credential&quot; \
+  --header &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
+  | jq -r '&quot;\(.issuer)\(.nonce)&quot;')
+</code></pre>
+<h3 id="paso-3-obtener-el-codigo-pre-autorizado">Paso 3: Obtener el código pre-autorizado</h3>
+<pre><code class="language-bash">export PRE_AUTHORIZED_CODE=$(curl -s -k -x localhost:8888 -X GET ${OFFER_URI} \
+  --header &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
+  | jq -r '.grants.&quot;urn:ietf:params:oauth:grant-type:pre-authorized_code&quot;.&quot;pre-authorized_code&quot;')
+</code></pre>
+<h3 id="paso-4-intercambiar-el-codigo-por-un-credential-access-token">Paso 4: Intercambiar el código por un Credential Access Token</h3>
+<pre><code class="language-bash">export CREDENTIAL_ACCESS_TOKEN=$(curl -s -k -x localhost:8888 -X POST \
+  &quot;$ISSUER_URL/realms/test-realm/protocol/openid-connect/token&quot; \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data grant_type=urn:ietf:params:oauth:grant-type:pre-authorized_code \
+  --data pre-authorized_code=${PRE_AUTHORIZED_CODE} | jq -r '.access_token')
+</code></pre>
+<h3 id="paso-5-solicitar-la-credencial-verificable-vc">Paso 5: Solicitar la credencial verificable (VC)</h3>
+<pre><code class="language-bash">export VC_JWT=$(curl -s -k -x localhost:8888 -X POST \
+  &quot;$ISSUER_URL/realms/test-realm/protocol/oid4vc/credential&quot; \
+  --header &quot;Authorization: Bearer ${CREDENTIAL_ACCESS_TOKEN}&quot; \
+  --header 'Content-Type: application/json' \
+  --data '{&quot;credential_identifier&quot;:&quot;operator_credential&quot;, &quot;format&quot;:&quot;jwt_vc&quot;}' \
+  | jq -r '.credential')
+</code></pre>
+<h2 id="2-obtener-un-access-token-oid4vp">2. Obtener un Access Token (OID4VP)</h2>
+<h3 id="paso-1-obtener-el-endpoint-de-token">Paso 1: Obtener el endpoint de token</h3>
+<pre><code class="language-bash">export TOKEN_ENDPOINT=$(curl -s -k -X GET &quot;$ISSUER_URL/.well-known/openid-configuration&quot; \
+  | jq -r '.token_endpoint')
+</code></pre>
+<h3 id="paso-2-crear-una-verifiable-presentation-vp">Paso 2: Crear una Verifiable Presentation (VP)</h3>
+<pre><code class="language-bash">export HOLDER_DID=$(cat cert/did.json | jq -r '.id')
+</code></pre>
+<pre><code class="language-bash">export VERIFIABLE_PRESENTATION=$(jq -nc \
+  --arg vc &quot;$VC_JWT&quot; \
+  --arg did &quot;$HOLDER_DID&quot; \
+  '{ &quot;@context&quot;: [&quot;https://www.w3.org/2018/credentials/v1&quot;],
+     &quot;type&quot;: [&quot;VerifiablePresentation&quot;],
+     &quot;verifiableCredential&quot;: [$vc],
+     &quot;holder&quot;: $did }')
+</code></pre>
+<h3 id="paso-3-construir-y-firmar-el-jwt-es256">Paso 3: Construir y firmar el JWT (ES256)</h3>
+<pre><code class="language-bash">header=$(jq -nc --arg kid &quot;$HOLDER_DID&quot; '{alg:&quot;ES256&quot;, typ:&quot;JWT&quot;, kid:$kid}')
+payload=$(jq -nc --arg iss &quot;$HOLDER_DID&quot; --arg sub &quot;$HOLDER_DID&quot; \
+  --argjson vp &quot;$VERIFIABLE_PRESENTATION&quot; '{iss:$iss, sub:$sub, vp:$vp}')
+
+header_b64=$(echo -n &quot;$header&quot; | openssl base64 -A | tr '+/' '-_' | tr -d '=')
+payload_b64=$(echo -n &quot;$payload&quot; | openssl base64 -A | tr '+/' '-_' | tr -d '=')
+signing_input=&quot;${header_b64}.${payload_b64}&quot;
+signature_b64=$(echo -n &quot;$signing_input&quot; | openssl dgst -sha256 -binary -sign cert/private-key.pem | openssl base64 -A | tr '+/' '-_' | tr -d '=')
+
+export JWT=&quot;${signing_input}.${signature_b64}&quot;
+
+</code></pre>
+<h3 id="paso-4-solicitar-el-access-token">Paso 4: Solicitar el Access Token</h3>
+<pre><code class="language-bash">export ACCESS_TOKEN=$(curl -s -k -x localhost:8888 -X POST ${TOKEN_ENDPOINT} \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data grant_type=vp_token \
+  --data vp_token=${JWT} \
+  --data scope=operator | jq -r '.access_token')
+</code></pre>
+<p>El resultado es una credencial verificable (VC) emitida por el Issuer y un Access Token OIDC derivado de ella, que se puede usar para acceder a endpoints protegidos por APISIX.</p>
 
 
 
