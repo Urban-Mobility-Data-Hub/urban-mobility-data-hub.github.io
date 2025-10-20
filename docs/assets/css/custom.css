@@ -1,0 +1,43 @@
+/* Estilo del header con degradado personalizado */
+.md-header {
+  background: linear-gradient(135deg, #0099cc, #0077aa) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Asegura que los iconos, texto y botones del header sean blancos */
+.md-header__title,
+.md-header__button,
+.md-header__inner,
+.md-header__source {
+  color: white !important;
+  fill: white !important;
+}
+
+/* Ajuste opcional: hover de los botones */
+.md-header__button:hover {
+  opacity: 0.8;
+}
+
+/* Texto dentro del buscador */
+.md-search__input {
+  color: rgb(175, 174, 174) !important;          /* texto principal */
+  caret-color: rgb(171, 171, 171) !important;    /* color del cursor */
+}
+
+/* Placeholder del buscador (el texto "Search" o "Buscar...") */
+.md-search__input::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Bordes e iconos del buscador */
+.md-search__form {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.md-search__icon {
+  color: rgb(215, 215, 215) !important;
+  fill: rgb(215, 215, 215) !important;
+}
+
+

@@ -6,19 +6,29 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-    primary: blue
-    accent: light blue
+    - scheme: default
+      primary: white     # color principal del header
+      accent: amber       # color de botones y enlaces activos
   logo: assets/logo.png
   favicon: assets/logo.png
   features:
-    - navigation.instant
     - navigation.tabs
     - content.code.copy
     - content.tabs.link
 
+
+extra_css:
+  - assets/css/custom.css
+
 nav:
-  - Home: index.md
-  - About: about.md
-  - Architecture: architecture.md
-  - Roadmap: roadmap.md
-  - Contact: contact.md
+  - Inicio: index.md
+  - Arquitectura: stack.md
+  - Guía de despliegue: deploy-guide.md
+  - Conectar al dataspace: onboarding.md
+  - Usar el dataspace:
+    - tokens: tokens.md
+    - Datos: datos.md
+    - Políticas: politicas.md
+    - TM Forum API: tmforum.md
+  - Seguridad, autenticación y autorización: security.md
+

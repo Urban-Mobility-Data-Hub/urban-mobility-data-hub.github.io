@@ -1,1 +1,6 @@
-architecture
+---
+hide:
+  - toc
+---
+
+arquitectura kubernetes
