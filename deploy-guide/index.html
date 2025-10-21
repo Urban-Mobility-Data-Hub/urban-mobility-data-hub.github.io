@@ -438,27 +438,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requisitos-del-sistema" class="md-nav__link">
-    Requisitos del sistema
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dependencias-necesarias" class="md-nav__link">
-    Dependencias necesarias
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#herramientas-recomendadas" class="md-nav__link">
-    Herramientas recomendadas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#despliegue-local" class="md-nav__link">
     Despliegue local
   </a>
@@ -661,27 +640,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requisitos-del-sistema" class="md-nav__link">
-    Requisitos del sistema
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dependencias-necesarias" class="md-nav__link">
-    Dependencias necesarias
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#herramientas-recomendadas" class="md-nav__link">
-    Herramientas recomendadas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#despliegue-local" class="md-nav__link">
     Despliegue local
   </a>
@@ -711,20 +669,23 @@
 <h1 id="guia-de-despliegue-del-dataspace">Guía de Despliegue del Dataspace</h1>
 <p>Esta guía explica cómo desplegar el entorno del <strong>Dataspace</strong> paso a paso, tanto en local como en un entorno de pruebas o producción.</p>
 <hr />
-<h2 id="requisitos-del-sistema">Requisitos del sistema</h2>
-<p>Dado que el despliegue local instala <strong>2 instancias de conector</strong> y un <strong>trust-anchor</strong>, se recomienda utilizar una máquina lo suficientemente potente.<br />
-Aunque <strong>16 GB de RAM</strong> podrían ser suficientes, se aconseja disponer de <strong>más de 24 GB</strong>.<br />
-El despliegue se ha construido y probado en <strong>Ubuntu</strong>, aunque la mayoría de las demás distribuciones de Linux también deberían funcionar.</p>
+<div class="admonition tip">
+<p class="admonition-title">Requisitos del sistema</p>
+<p>Dado que el despliegue local instala <strong>2 instancias de conector</strong> y un <strong>trust-anchor</strong>, se recomienda utilizar una máquina lo suficientemente potente. Aunque <strong>16 GB de RAM</strong> podrían ser suficientes, se aconseja disponer de <strong>más de 24 GB</strong>. El despliegue se ha construido y probado en <strong>Ubuntu</strong>, aunque la mayoría de las demás distribuciones de Linux también deberían funcionar.</p>
+</div>
 <hr />
-<h2 id="dependencias-necesarias">Dependencias necesarias</h2>
+<div class="admonition info">
+<p class="admonition-title">Dependencias necesarias</p>
 <p>El despliegue local intenta estar lo más <strong>desacoplado posible del sistema anfitrión</strong> para reducir los requisitos, pero aun así necesita los siguientes programas:</p>
 <ul>
 <li><strong>Maven</strong>  </li>
 <li><strong>Java Development Kit (JDK)</strong> — al menos <strong>versión 17</strong>  </li>
 <li><strong>Docker</strong></li>
 </ul>
+</div>
 <hr />
-<h2 id="herramientas-recomendadas">Herramientas recomendadas</h2>
+<div class="admonition info">
+<p class="admonition-title">Herramientas recomendadas</p>
 <p>Para interactuar con el sistema, también son útiles las siguientes herramientas:</p>
 <ul>
 <li><strong>kubectl</strong>  </li>
@@ -732,20 +693,82 @@ El despliegue se ha construido y probado en <strong>Ubuntu</strong>, aunque la m
 <li><strong>jq</strong>  </li>
 <li><strong>yq</strong></li>
 </ul>
+</div>
 <hr />
 <h2 id="despliegue-local">Despliegue local</h2>
 <p>Clonar el repositorio:</p>
-<pre><code class="language-bash">   git clone https://github.com/urban-mobility-data-hub/dataspace-infrastructure.git
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/urban-mobility-data-hub/dataspace-infrastructure.git
+</code></pre></div>
 <p>Desplegar el dataspace:</p>
-<pre><code class="language-bash">    mvn clean deploy -Plocal
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>deploy<span class="w"> </span>-Plocal
+</code></pre></div>
 <p>Añadir el contexto a KUBECONFIG:</p>
-<pre><code class="language-bash">    export  KUBECONFIG=$(pwd)/target/k3s.yaml
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w">  </span><span class="nv">KUBECONFIG</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/target/k3s.yaml
+</code></pre></div>
 <p>Ver despliegue en tiempo real:</p>
-<pre><code class="language-bash">    watch kubectl get all --all-namespaces
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>watch<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>--all-namespaces
+</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code>NAMESPACE<span class="w">            </span>NAME<span class="w">                                                        </span>READY<span class="w">   </span>STATUS<span class="w">      </span>RESTARTS<span class="w">       </span>AGE
+cert-manager<span class="w">         </span>cert-manager-6d988558d6-q7pcs<span class="w">                               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>132m
+cert-manager<span class="w">         </span>cert-manager-cainjector-6976895488-dpwh4<span class="w">                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>132m
+cert-manager<span class="w">         </span>cert-manager-webhook-fcf48cc54-tj7tx<span class="w">                        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>132m
+cert-manager<span class="w">         </span>trust-manager-775bfcf747-gpmqb<span class="w">                              </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>131m
+consumer-a<span class="w">           </span>did-helper-596df479dc-td66f<span class="w">                                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>114m
+consumer-a<span class="w">           </span>dsconfig-8fcdb84b7-pc26b<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>114m
+consumer-a<span class="w">           </span>keycloak-0<span class="w">                                                  </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>114m
+consumer-a<span class="w">           </span>postgresql-0<span class="w">                                                </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>114m
+ds-operator<span class="w">          </span>mysql-0<span class="w">                                                     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>130m
+ds-operator<span class="w">          </span>trusted-issuers-list-85c5765cb4-n7r8n<span class="w">                       </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>128m<span class="w"> </span>ago<span class="o">)</span><span class="w">   </span>130m
+kube-system<span class="w">          </span>coredns-76f75df574-g42xv<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>coredns-76f75df574-sm58c<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>etcd-cluster-minimal-ds-control-plane<span class="w">                       </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kindnet-fqsmz<span class="w">                                               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kindnet-lxw8f<span class="w">                                               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kindnet-qvkll<span class="w">                                               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kube-apiserver-cluster-minimal-ds-control-plane<span class="w">             </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kube-controller-manager-cluster-minimal-ds-control-plane<span class="w">    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kube-proxy-57vtq<span class="w">                                            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kube-proxy-c8cnv<span class="w">                                            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kube-proxy-jhz5b<span class="w">                                            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+kube-system<span class="w">          </span>kube-scheduler-cluster-minimal-ds-control-plane<span class="w">             </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+local-path-storage<span class="w">   </span>local-path-provisioner-7577fdbbfb-8qxwq<span class="w">                     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>134m
+metallb-system<span class="w">       </span>controller-67d9f4b5bc-fkq8n<span class="w">                                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>133m
+metallb-system<span class="w">       </span>speaker-lrqjr<span class="w">                                               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>133m
+metallb-system<span class="w">       </span>speaker-tjdvg<span class="w">                                               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>133m
+metallb-system<span class="w">       </span>speaker-wblpx<span class="w">                                               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>133m
+provider-a<span class="w">           </span>apisix-proxy-control-plane-6f7664c8ff-nmx5g<span class="w">                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>apisix-proxy-data-plane-644f6d76dd-l6jxf<span class="w">                    </span><span class="m">2</span>/2<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>contract-management-6fdf575454-vjzkq<span class="w">                        </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>credentials-config-service-64bdb5d4f7-mr8sn<span class="w">                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>did-helper-7c88f8cfcd-5qssl<span class="w">                                 </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>dsconfig-8fcdb84b7-xg8f9<span class="w">                                    </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>fiware-data-space-connector-etcd-0<span class="w">                          </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>fiware-data-space-connector-etcd-1<span class="w">                          </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>fiware-data-space-connector-etcd-2<span class="w">                          </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>121m<span class="w"> </span>ago<span class="o">)</span><span class="w">   </span>126m
+provider-a<span class="w">           </span>mysql-db-0<span class="w">                                                  </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>pap-odrl-55745c6cb4-zvqbs<span class="w">                                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>postgis-db-0<span class="w">                                                </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>postgresql-db-0<span class="w">                                             </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>scorpio-broker-5ccf978d57-wm5bp<span class="w">                             </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-customer-bill-management-67d579485d-b8tqr<span class="w">      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-customer-management-684564489f-qjmw8<span class="w">           </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-envoy-654894667-xf6m8<span class="w">                          </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-party-catalog-5d7754bbb-gn2sz<span class="w">                  </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-product-catalog-7b459df5f8-jxs9f<span class="w">               </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-product-inventory-8888bdf67-bj5qh<span class="w">              </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-product-ordering-management-56fd45cbb6-n9lh4<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-registration-6pvn2<span class="w">                             </span><span class="m">0</span>/1<span class="w">     </span>Completed<span class="w">   </span><span class="m">0</span><span class="w">              </span>119m
+provider-a<span class="w">           </span>tm-forum-api-registration-8mfs9<span class="w">                             </span><span class="m">0</span>/1<span class="w">     </span>Error<span class="w">       </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-registration-k756g<span class="w">                             </span><span class="m">0</span>/1<span class="w">     </span>Error<span class="w">       </span><span class="m">0</span><span class="w">              </span>120m
+provider-a<span class="w">           </span>tm-forum-api-registration-tvvb9<span class="w">                             </span><span class="m">0</span>/1<span class="w">     </span>Error<span class="w">       </span><span class="m">0</span><span class="w">              </span>123m
+provider-a<span class="w">           </span>tm-forum-api-resource-catalog-77547c969f-dgcx8<span class="w">              </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-resource-function-activation-6d8d9ff64-7mxg9<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-resource-inventory-7d74964c94-xvhqd<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>tm-forum-api-service-catalog-86b94485d-5ngkh<span class="w">                </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>trusted-issuers-list-65b7fbd6fd-hbrxv<span class="w">                       </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+provider-a<span class="w">           </span>vc-verifier-7f8b6666db-n2vlb<span class="w">                                </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>126m
+traefik-ingress<span class="w">      </span>traefik-deployment-7489799fff-d4ffk<span class="w">                         </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">     </span><span class="m">0</span><span class="w">              </span>132m
+</code></pre></div>
 
 
 
@@ -789,7 +812,7 @@ El despliegue se ha construido y probado en <strong>Ubuntu</strong>, aunque la m
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>

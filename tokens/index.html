@@ -832,79 +832,116 @@
 <p>El dataspace utiliza <strong>OpenID for Verifiable Credentials (OID4VC)</strong> y <strong>OpenID for Verifiable Presentations (OID4VP)</strong> para autenticar a los participantes mediante <strong>credenciales verificables (VCs)</strong>.<br />
 A continuación se muestra cómo obtener una credencial verificable y un token OIDC para acceder a APIs protegidas.</p>
 <hr />
+<div class="admonition info">
+<p class="admonition-title">¿Qué es una Verifiable Credential?</p>
+<p>Una <strong>credencial verificable (VC)</strong> es un documento digital firmado criptográficamente por una autoridad emisora (Issuer).<br />
+Certifica una afirmación sobre un sujeto, como por ejemplo:</p>
+<ul>
+<li>“Esta organización está registrada como proveedor de datos.”  </li>
+<li>“Este usuario tiene el rol de operador dentro del dataspace.”</li>
+</ul>
+<p>La credencial sigue el estándar <a href="https://www.w3.org/TR/vc-data-model/">W3C Verifiable Credentials</a>.<br />
+En nuestro caso, se emite y valida usando <strong>OIDC (OpenID Connect)</strong> para integrarla con los flujos de autenticación modernos.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">¿Qué es una Verifiable Presentation?</p>
+<p>Una <strong>verifiable presentation (VP)</strong> es una prueba derivada de una o varias credenciales verificables.
+El titular (holder) la firma digitalmente y la presenta a una entidad verificadora (Verifier), demostrando que posee una credencial válida sin revelar información sensible innecesaria.</p>
+<p>En el dataspace, se usa para obtener un Access Token OIDC que permita acceder a APIs protegidas (por ejemplo, mediante APISIX o EDC).</p>
+</div>
+<hr />
 <h2 id="1-obtener-una-credencial-verificable-oid4vc">1. Obtener una credencial verificable (OID4VC)</h2>
 <h3 id="paso-1-solicitar-un-access-token-inicial">Paso 1: Solicitar un Access Token inicial</h3>
-<pre><code class="language-bash">export ACCESS_TOKEN=$(curl -s -k -x localhost:8888 -X POST \
-  &quot;$ISSUER_URL/realms/test-realm/protocol/openid-connect/token&quot; \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data grant_type=password \
-  --data client_id=account-console \
-  --data username=operator \
-  --data password=test | jq -r '.access_token')
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ACCESS_TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="nv">$ISSUER_URL</span><span class="s2">/realms/test-realm/protocol/openid-connect/token&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">grant_type</span><span class="o">=</span>password<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">client_id</span><span class="o">=</span>account-console<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">username</span><span class="o">=</span>operator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">password</span><span class="o">=</span><span class="nb">test</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.access_token&#39;</span><span class="k">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p>Este comando solicita un <strong>Access Token OIDC</strong> al servidor de autenticación (Keycloak) usando el flujo <code>password</code>.<br />
+Autentica al usuario <code>operator</code> con el cliente <code>account-console</code>.</p>
+</div>
 <h3 id="paso-2-obtener-la-oferta-de-credencial-credential-offer-uri">Paso 2: Obtener la oferta de credencial (Credential Offer URI)</h3>
-<pre><code class="language-bash">export OFFER_URI=$(curl -s -k -x localhost:8888 -X GET \
-  &quot;$ISSUER_URL/realms/test-realm/protocol/oid4vc/credential-offer-uri?credential_configuration_id=operator_credential&quot; \
-  --header &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
-  | jq -r '&quot;\(.issuer)\(.nonce)&quot;')
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">OFFER_URI</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="nv">$ISSUER_URL</span><span class="s2">/realms/test-realm/protocol/oid4vc/credential-offer-uri?credential_configuration_id=operator_credential&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;&quot;\(.issuer)\(.nonce)&quot;&#39;</span><span class="k">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p>Este comando solicita al <strong>Issuer (Keycloak)</strong> la <strong>oferta de credencial (Credential Offer URI)</strong> correspondiente a la configuración <code>operator_credential</code>.<br />
+La respuesta contiene una URL única que representa la solicitud de emisión de una <strong>credencial verificable (VC)</strong>,<br />
+y que se usará en el siguiente paso para obtener el código preautorizado.</p>
+</div>
 <h3 id="paso-3-obtener-el-codigo-pre-autorizado">Paso 3: Obtener el código pre-autorizado</h3>
-<pre><code class="language-bash">export PRE_AUTHORIZED_CODE=$(curl -s -k -x localhost:8888 -X GET ${OFFER_URI} \
-  --header &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
-  | jq -r '.grants.&quot;urn:ietf:params:oauth:grant-type:pre-authorized_code&quot;.&quot;pre-authorized_code&quot;')
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PRE_AUTHORIZED_CODE</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="si">${</span><span class="nv">OFFER_URI</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.grants.&quot;urn:ietf:params:oauth:grant-type:pre-authorized_code&quot;.&quot;pre-authorized_code&quot;&#39;</span><span class="k">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p>Este comando accede a la <strong>Credential Offer URI</strong> obtenida en el paso anterior y extrae de la respuesta el campo<br />
+<code>"pre-authorized_code"</code>, un código temporal emitido por el <strong>Issuer</strong>.<br />
+Este código permite continuar el flujo de emisión sin interacción del usuario y se usará para solicitar el <strong>Credential Access Token</strong>.</p>
+</div>
 <h3 id="paso-4-intercambiar-el-codigo-por-un-credential-access-token">Paso 4: Intercambiar el código por un Credential Access Token</h3>
-<pre><code class="language-bash">export CREDENTIAL_ACCESS_TOKEN=$(curl -s -k -x localhost:8888 -X POST \
-  &quot;$ISSUER_URL/realms/test-realm/protocol/openid-connect/token&quot; \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data grant_type=urn:ietf:params:oauth:grant-type:pre-authorized_code \
-  --data pre-authorized_code=${PRE_AUTHORIZED_CODE} | jq -r '.access_token')
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CREDENTIAL_ACCESS_TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="nv">$ISSUER_URL</span><span class="s2">/realms/test-realm/protocol/openid-connect/token&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">grant_type</span><span class="o">=</span>urn:ietf:params:oauth:grant-type:pre-authorized_code<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span>pre-authorized_code<span class="o">=</span><span class="si">${</span><span class="nv">PRE_AUTHORIZED_CODE</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.access_token&#39;</span><span class="k">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p>Este comando intercambia el <strong>código preautorizado</strong> por un <strong>Credential Access Token</strong> en el endpoint <code>/token</code> del Issuer.<br />
+Dicho token autoriza temporalmente al cliente para solicitar la emisión de una <strong>credencial verificable (VC)</strong> en el siguiente paso del flujo OID4VC.</p>
+</div>
 <h3 id="paso-5-solicitar-la-credencial-verificable-vc">Paso 5: Solicitar la credencial verificable (VC)</h3>
-<pre><code class="language-bash">export VC_JWT=$(curl -s -k -x localhost:8888 -X POST \
-  &quot;$ISSUER_URL/realms/test-realm/protocol/oid4vc/credential&quot; \
-  --header &quot;Authorization: Bearer ${CREDENTIAL_ACCESS_TOKEN}&quot; \
-  --header 'Content-Type: application/json' \
-  --data '{&quot;credential_identifier&quot;:&quot;operator_credential&quot;, &quot;format&quot;:&quot;jwt_vc&quot;}' \
-  | jq -r '.credential')
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">VC_JWT</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="nv">$ISSUER_URL</span><span class="s2">/realms/test-realm/protocol/oid4vc/credential&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">CREDENTIAL_ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;credential_identifier&quot;:&quot;operator_credential&quot;, &quot;format&quot;:&quot;jwt_vc&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.credential&#39;</span><span class="k">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p>Este comando solicita al <strong>Issuer</strong> la emisión de la <strong>credencial verificable (VC)</strong>, utilizando el <code>CREDENTIAL_ACCESS_TOKEN</code> obtenido previamente. El resultado es una credencial en formato <strong>JWT (JSON Web Token)</strong>, firmada criptográficamente, que certifica la identidad o rol del usuario dentro del dataspace.</p>
+</div>
 <h2 id="2-obtener-un-access-token-oid4vp">2. Obtener un Access Token (OID4VP)</h2>
 <h3 id="paso-1-obtener-el-endpoint-de-token">Paso 1: Obtener el endpoint de token</h3>
-<pre><code class="language-bash">export TOKEN_ENDPOINT=$(curl -s -k -X GET &quot;$ISSUER_URL/.well-known/openid-configuration&quot; \
-  | jq -r '.token_endpoint')
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">TOKEN_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ISSUER_URL</span><span class="s2">/.well-known/openid-configuration&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.token_endpoint&#39;</span><span class="k">)</span>
+</code></pre></div>
 <h3 id="paso-2-crear-una-verifiable-presentation-vp">Paso 2: Crear una Verifiable Presentation (VP)</h3>
-<pre><code class="language-bash">export HOLDER_DID=$(cat cert/did.json | jq -r '.id')
-</code></pre>
-<pre><code class="language-bash">export VERIFIABLE_PRESENTATION=$(jq -nc \
-  --arg vc &quot;$VC_JWT&quot; \
-  --arg did &quot;$HOLDER_DID&quot; \
-  '{ &quot;@context&quot;: [&quot;https://www.w3.org/2018/credentials/v1&quot;],
-     &quot;type&quot;: [&quot;VerifiablePresentation&quot;],
-     &quot;verifiableCredential&quot;: [$vc],
-     &quot;holder&quot;: $did }')
-</code></pre>
+<p><div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">HOLDER_DID</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span>cert/did.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.id&#39;</span><span class="k">)</span>
+</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">VERIFIABLE_PRESENTATION</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-nc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--arg<span class="w"> </span>vc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VC_JWT</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--arg<span class="w"> </span>did<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOLDER_DID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;{ &quot;@context&quot;: [&quot;https://www.w3.org/2018/credentials/v1&quot;],</span>
+<span class="s1">     &quot;type&quot;: [&quot;VerifiablePresentation&quot;],</span>
+<span class="s1">     &quot;verifiableCredential&quot;: [$vc],</span>
+<span class="s1">     &quot;holder&quot;: $did }&#39;</span><span class="k">)</span>
+</code></pre></div></p>
 <h3 id="paso-3-construir-y-firmar-el-jwt-es256">Paso 3: Construir y firmar el JWT (ES256)</h3>
-<pre><code class="language-bash">header=$(jq -nc --arg kid &quot;$HOLDER_DID&quot; '{alg:&quot;ES256&quot;, typ:&quot;JWT&quot;, kid:$kid}')
-payload=$(jq -nc --arg iss &quot;$HOLDER_DID&quot; --arg sub &quot;$HOLDER_DID&quot; \
-  --argjson vp &quot;$VERIFIABLE_PRESENTATION&quot; '{iss:$iss, sub:$sub, vp:$vp}')
+<div class="language-bash highlight"><pre><span></span><code><span class="nv">header</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-nc<span class="w"> </span>--arg<span class="w"> </span>kid<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOLDER_DID</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;{alg:&quot;ES256&quot;, typ:&quot;JWT&quot;, kid:$kid}&#39;</span><span class="k">)</span>
+<span class="nv">payload</span><span class="o">=</span><span class="k">$(</span>jq<span class="w"> </span>-nc<span class="w"> </span>--arg<span class="w"> </span>iss<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOLDER_DID</span><span class="s2">&quot;</span><span class="w"> </span>--arg<span class="w"> </span>sub<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOLDER_DID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--argjson<span class="w"> </span>vp<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERIFIABLE_PRESENTATION</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;{iss:$iss, sub:$sub, vp:$vp}&#39;</span><span class="k">)</span>
 
-header_b64=$(echo -n &quot;$header&quot; | openssl base64 -A | tr '+/' '-_' | tr -d '=')
-payload_b64=$(echo -n &quot;$payload&quot; | openssl base64 -A | tr '+/' '-_' | tr -d '=')
-signing_input=&quot;${header_b64}.${payload_b64}&quot;
-signature_b64=$(echo -n &quot;$signing_input&quot; | openssl dgst -sha256 -binary -sign cert/private-key.pem | openssl base64 -A | tr '+/' '-_' | tr -d '=')
+<span class="nv">header_b64</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$header</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>base64<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;+/&#39;</span><span class="w"> </span><span class="s1">&#39;-_&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="k">)</span>
+<span class="nv">payload_b64</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$payload</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>base64<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;+/&#39;</span><span class="w"> </span><span class="s1">&#39;-_&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="k">)</span>
+<span class="nv">signing_input</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">header_b64</span><span class="si">}</span><span class="s2">.</span><span class="si">${</span><span class="nv">payload_b64</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">signature_b64</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$signing_input</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>dgst<span class="w"> </span>-sha256<span class="w"> </span>-binary<span class="w"> </span>-sign<span class="w"> </span>cert/private-key.pem<span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>base64<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;+/&#39;</span><span class="w"> </span><span class="s1">&#39;-_&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="k">)</span>
 
-export JWT=&quot;${signing_input}.${signature_b64}&quot;
-
-</code></pre>
+<span class="nb">export</span><span class="w"> </span><span class="nv">JWT</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">signing_input</span><span class="si">}</span><span class="s2">.</span><span class="si">${</span><span class="nv">signature_b64</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
 <h3 id="paso-4-solicitar-el-access-token">Paso 4: Solicitar el Access Token</h3>
-<pre><code class="language-bash">export ACCESS_TOKEN=$(curl -s -k -x localhost:8888 -X POST ${TOKEN_ENDPOINT} \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data grant_type=vp_token \
-  --data vp_token=${JWT} \
-  --data scope=operator | jq -r '.access_token')
-</code></pre>
-<p>El resultado es una credencial verificable (VC) emitida por el Issuer y un Access Token OIDC derivado de ella, que se puede usar para acceder a endpoints protegidos por APISIX.</p>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ACCESS_TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="si">${</span><span class="nv">TOKEN_ENDPOINT</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">grant_type</span><span class="o">=</span>vp_token<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">vp_token</span><span class="o">=</span><span class="si">${</span><span class="nv">JWT</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="nv">scope</span><span class="o">=</span>operator<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.access_token&#39;</span><span class="k">)</span>
+</code></pre></div>
 
 
 
@@ -946,7 +983,7 @@ export JWT=&quot;${signing_input}.${signature_b64}&quot;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>

@@ -827,98 +827,99 @@
 
 
 <h1 id="tm-forum-apis">TM Forum APIs</h1>
-<p>El dataspace utiliza las APIs estándar de <strong>TM Forum</strong> para la gestión de ofertas, contratos y catálogos de productos.<br />
-Estas APIs permiten registrar <strong>especificaciones</strong>, <strong>ofertas</strong> y <strong>órdenes de producto</strong>, además de <strong>organizaciones</strong> y <strong>clientes</strong>.</p>
+<p>El dataspace utiliza las APIs estándar de <strong>TM Forum</strong> para la gestión de ofertas, contratos y catálogos de productos. Estas APIs permiten registrar <strong>especificaciones</strong>, <strong>ofertas</strong> y <strong>órdenes de producto</strong>, además de <strong>organizaciones</strong> y <strong>clientes</strong>.</p>
 <p>En esta sección se muestran los ejemplos más comunes.</p>
 <hr />
 <h2 id="crear-una-product-specification">Crear una Product Specification</h2>
-<p>La <strong>Product Specification</strong> define las características técnicas y políticas que debe cumplir un producto o dataset publicado en el dataspace.<br />
-Incluye información sobre credenciales requeridas y políticas ODRL asociadas.</p>
-<pre><code class="language-bash">export PRODUCT_SPEC_FULL_ID=$(curl -X POST \
-  http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productSpecification \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d &quot;{
-    \&quot;brand\&quot;: \&quot;M&amp;P Operations\&quot;,
-    \&quot;version\&quot;: \&quot;1.0.0\&quot;,
-    \&quot;lifecycleStatus\&quot;: \&quot;ACTIVE\&quot;,
-    \&quot;name\&quot;: \&quot;M&amp;P K8S\&quot;,
-    \&quot;productSpecCharacteristic\&quot;: [
-      {
-        \&quot;id\&quot;: \&quot;credentialsConfig\&quot;,
-        \&quot;name\&quot;: \&quot;Credentials Config\&quot;,
-        \&quot;@schemaLocation\&quot;: \&quot;https://raw.githubusercontent.com/FIWARE/contract-management/refs/heads/main/schemas/credentials/credentialConfigCharacteristic.json\&quot;,
-        \&quot;valueType\&quot;: \&quot;credentialsConfiguration\&quot;,
-        \&quot;productSpecCharacteristicValue\&quot;: [
-          {
-            \&quot;isDefault\&quot;: true,
-            \&quot;value\&quot;: {
-              \&quot;credentialsType\&quot;: \&quot;OperatorCredential\&quot;,
-              \&quot;claims\&quot;: [
-                {
-                  \&quot;name\&quot;: \&quot;roles\&quot;,
-                  \&quot;path\&quot;: \&quot;$.roles[?(@.target==\\\&quot;${PROVIDER_DID}\\\&quot;)].names[*]\&quot;,
-                  \&quot;allowedValues\&quot;: [\&quot;OPERATOR\&quot;]
-                }
-              ]
-            }
-          }
-        ]
-      },
-      {
-        \&quot;id\&quot;: \&quot;policyConfig\&quot;,
-        \&quot;name\&quot;: \&quot;Policy for creation of K8S clusters.\&quot;,
-        \&quot;@schemaLocation\&quot;: \&quot;https://raw.githubusercontent.com/FIWARE/contract-management/refs/heads/policy-support/schemas/odrl/policyCharacteristic.json\&quot;,
-        \&quot;valueType\&quot;: \&quot;authorizationPolicy\&quot;,
-        \&quot;productSpecCharacteristicValue\&quot;: [
-          {
-            \&quot;isDefault\&quot;: true,
-            \&quot;value\&quot;: {
-              \&quot;@context\&quot;: {\&quot;odrl\&quot;: \&quot;http://www.w3.org/ns/odrl/2/\&quot;},
-              \&quot;@id\&quot;: \&quot;https://mp-operation.org/policy/common/k8s-full\&quot;,
-              \&quot;odrl:uid\&quot;: \&quot;https://mp-operation.org/policy/common/k8s-full\&quot;,
-              \&quot;@type\&quot;: \&quot;odrl:Policy\&quot;,
-              \&quot;odrl:permission\&quot;: {
-                \&quot;odrl:assigner\&quot;: \&quot;https://www.mp-operation.org/\&quot;,
-                \&quot;odrl:target\&quot;: {
-                  \&quot;@type\&quot;: \&quot;odrl:AssetCollection\&quot;,
-                  \&quot;odrl:source\&quot;: \&quot;urn:asset\&quot;,
-                  \&quot;odrl:refinement\&quot;: [{
-                    \&quot;@type\&quot;: \&quot;odrl:Constraint\&quot;,
-                    \&quot;odrl:leftOperand\&quot;: \&quot;ngsi-ld:entityType\&quot;,
-                    \&quot;odrl:operator\&quot;: \&quot;odrl:eq\&quot;,
-                    \&quot;odrl:rightOperand\&quot;: \&quot;K8SCluster\&quot;
-                  }]
-                },
-                \&quot;odrl:assignee\&quot;: {
-                  \&quot;@type\&quot;: \&quot;odrl:PartyCollection\&quot;,
-                  \&quot;odrl:source\&quot;: \&quot;urn:user\&quot;,
-                  \&quot;odrl:refinement\&quot;: {
-                    \&quot;@type\&quot;: \&quot;odrl:LogicalConstraint\&quot;,
-                    \&quot;odrl:and\&quot;: [
-                      {
-                        \&quot;@type\&quot;: \&quot;odrl:Constraint\&quot;,
-                        \&quot;odrl:leftOperand\&quot;: \&quot;vc:role\&quot;,
-                        \&quot;odrl:operator\&quot;: \&quot;odrl:hasPart\&quot;,
-                        \&quot;odrl:rightOperand\&quot;: {\&quot;@value\&quot;: \&quot;OPERATOR\&quot;, \&quot;@type\&quot;: \&quot;xsd:string\&quot;}
-                      },
-                      {
-                        \&quot;@type\&quot;: \&quot;odrl:Constraint\&quot;,
-                        \&quot;odrl:leftOperand\&quot;: \&quot;vc:type\&quot;,
-                        \&quot;odrl:operator\&quot;: \&quot;odrl:hasPart\&quot;,
-                        \&quot;odrl:rightOperand\&quot;: {\&quot;@value\&quot;: \&quot;OperatorCredential\&quot;, \&quot;@type\&quot;: \&quot;xsd:string\&quot;}
-                      }
-                    ]
-                  }
-                },
-                \&quot;odrl:action\&quot;: \&quot;odrl:use\&quot;
-              }
-            }
-          }
-        ]
-      }
-    ]
-  }&quot; | jq -r '.id'); echo ${PRODUCT_SPEC_FULL_ID}
-</code></pre>
+<div class="admonition note">
+<p>La <strong>Product Specification</strong> define las características técnicas y políticas que debe cumplir un producto o dataset publicado en el dataspace. Incluye información sobre credenciales requeridas y políticas ODRL asociadas.</p>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PRODUCT_SPEC_FULL_ID</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productSpecification<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json;charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{</span>
+<span class="s2">    \&quot;brand\&quot;: \&quot;M&amp;P Operations\&quot;,</span>
+<span class="s2">    \&quot;version\&quot;: \&quot;1.0.0\&quot;,</span>
+<span class="s2">    \&quot;lifecycleStatus\&quot;: \&quot;ACTIVE\&quot;,</span>
+<span class="s2">    \&quot;name\&quot;: \&quot;M&amp;P K8S\&quot;,</span>
+<span class="s2">    \&quot;productSpecCharacteristic\&quot;: [</span>
+<span class="s2">      {</span>
+<span class="s2">        \&quot;id\&quot;: \&quot;credentialsConfig\&quot;,</span>
+<span class="s2">        \&quot;name\&quot;: \&quot;Credentials Config\&quot;,</span>
+<span class="s2">        \&quot;@schemaLocation\&quot;: \&quot;https://raw.githubusercontent.com/FIWARE/contract-management/refs/heads/main/schemas/credentials/credentialConfigCharacteristic.json\&quot;,</span>
+<span class="s2">        \&quot;valueType\&quot;: \&quot;credentialsConfiguration\&quot;,</span>
+<span class="s2">        \&quot;productSpecCharacteristicValue\&quot;: [</span>
+<span class="s2">          {</span>
+<span class="s2">            \&quot;isDefault\&quot;: true,</span>
+<span class="s2">            \&quot;value\&quot;: {</span>
+<span class="s2">              \&quot;credentialsType\&quot;: \&quot;OperatorCredential\&quot;,</span>
+<span class="s2">              \&quot;claims\&quot;: [</span>
+<span class="s2">                {</span>
+<span class="s2">                  \&quot;name\&quot;: \&quot;roles\&quot;,</span>
+<span class="s2">                  \&quot;path\&quot;: \&quot;</span>$<span class="s2">.roles[?(@.target==\\\&quot;</span><span class="si">${</span><span class="nv">PROVIDER_DID</span><span class="si">}</span><span class="s2">\\\&quot;)].names[*]\&quot;,</span>
+<span class="s2">                  \&quot;allowedValues\&quot;: [\&quot;OPERATOR\&quot;]</span>
+<span class="s2">                }</span>
+<span class="s2">              ]</span>
+<span class="s2">            }</span>
+<span class="s2">          }</span>
+<span class="s2">        ]</span>
+<span class="s2">      },</span>
+<span class="s2">      {</span>
+<span class="s2">        \&quot;id\&quot;: \&quot;policyConfig\&quot;,</span>
+<span class="s2">        \&quot;name\&quot;: \&quot;Policy for creation of K8S clusters.\&quot;,</span>
+<span class="s2">        \&quot;@schemaLocation\&quot;: \&quot;https://raw.githubusercontent.com/FIWARE/contract-management/refs/heads/policy-support/schemas/odrl/policyCharacteristic.json\&quot;,</span>
+<span class="s2">        \&quot;valueType\&quot;: \&quot;authorizationPolicy\&quot;,</span>
+<span class="s2">        \&quot;productSpecCharacteristicValue\&quot;: [</span>
+<span class="s2">          {</span>
+<span class="s2">            \&quot;isDefault\&quot;: true,</span>
+<span class="s2">            \&quot;value\&quot;: {</span>
+<span class="s2">              \&quot;@context\&quot;: {\&quot;odrl\&quot;: \&quot;http://www.w3.org/ns/odrl/2/\&quot;},</span>
+<span class="s2">              \&quot;@id\&quot;: \&quot;https://mp-operation.org/policy/common/k8s-full\&quot;,</span>
+<span class="s2">              \&quot;odrl:uid\&quot;: \&quot;https://mp-operation.org/policy/common/k8s-full\&quot;,</span>
+<span class="s2">              \&quot;@type\&quot;: \&quot;odrl:Policy\&quot;,</span>
+<span class="s2">              \&quot;odrl:permission\&quot;: {</span>
+<span class="s2">                \&quot;odrl:assigner\&quot;: \&quot;https://www.mp-operation.org/\&quot;,</span>
+<span class="s2">                \&quot;odrl:target\&quot;: {</span>
+<span class="s2">                  \&quot;@type\&quot;: \&quot;odrl:AssetCollection\&quot;,</span>
+<span class="s2">                  \&quot;odrl:source\&quot;: \&quot;urn:asset\&quot;,</span>
+<span class="s2">                  \&quot;odrl:refinement\&quot;: [{</span>
+<span class="s2">                    \&quot;@type\&quot;: \&quot;odrl:Constraint\&quot;,</span>
+<span class="s2">                    \&quot;odrl:leftOperand\&quot;: \&quot;ngsi-ld:entityType\&quot;,</span>
+<span class="s2">                    \&quot;odrl:operator\&quot;: \&quot;odrl:eq\&quot;,</span>
+<span class="s2">                    \&quot;odrl:rightOperand\&quot;: \&quot;K8SCluster\&quot;</span>
+<span class="s2">                  }]</span>
+<span class="s2">                },</span>
+<span class="s2">                \&quot;odrl:assignee\&quot;: {</span>
+<span class="s2">                  \&quot;@type\&quot;: \&quot;odrl:PartyCollection\&quot;,</span>
+<span class="s2">                  \&quot;odrl:source\&quot;: \&quot;urn:user\&quot;,</span>
+<span class="s2">                  \&quot;odrl:refinement\&quot;: {</span>
+<span class="s2">                    \&quot;@type\&quot;: \&quot;odrl:LogicalConstraint\&quot;,</span>
+<span class="s2">                    \&quot;odrl:and\&quot;: [</span>
+<span class="s2">                      {</span>
+<span class="s2">                        \&quot;@type\&quot;: \&quot;odrl:Constraint\&quot;,</span>
+<span class="s2">                        \&quot;odrl:leftOperand\&quot;: \&quot;vc:role\&quot;,</span>
+<span class="s2">                        \&quot;odrl:operator\&quot;: \&quot;odrl:hasPart\&quot;,</span>
+<span class="s2">                        \&quot;odrl:rightOperand\&quot;: {\&quot;@value\&quot;: \&quot;OPERATOR\&quot;, \&quot;@type\&quot;: \&quot;xsd:string\&quot;}</span>
+<span class="s2">                      },</span>
+<span class="s2">                      {</span>
+<span class="s2">                        \&quot;@type\&quot;: \&quot;odrl:Constraint\&quot;,</span>
+<span class="s2">                        \&quot;odrl:leftOperand\&quot;: \&quot;vc:type\&quot;,</span>
+<span class="s2">                        \&quot;odrl:operator\&quot;: \&quot;odrl:hasPart\&quot;,</span>
+<span class="s2">                        \&quot;odrl:rightOperand\&quot;: {\&quot;@value\&quot;: \&quot;OperatorCredential\&quot;, \&quot;@type\&quot;: \&quot;xsd:string\&quot;}</span>
+<span class="s2">                      }</span>
+<span class="s2">                    ]</span>
+<span class="s2">                  }</span>
+<span class="s2">                },</span>
+<span class="s2">                \&quot;odrl:action\&quot;: \&quot;odrl:use\&quot;</span>
+<span class="s2">              }</span>
+<span class="s2">            }</span>
+<span class="s2">          }</span>
+<span class="s2">        ]</span>
+<span class="s2">      }</span>
+<span class="s2">    ]</span>
+<span class="s2">  }&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.id&#39;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">PRODUCT_SPEC_FULL_ID</span><span class="si">}</span>
+</code></pre></div>
+<div class="admonition note">
 <ul>
 <li>
 <p>Crea una Product Specification llamada M&amp;P K8S</p>
@@ -933,27 +934,31 @@ Incluye información sobre credenciales requeridas y políticas ODRL asociadas.<
 <p>Devuelve el identificador único (PRODUCT_SPEC_FULL_ID) que se usará al crear las ofertas.</p>
 </li>
 </ul>
+</div>
 <hr />
 <h3 id="listar-especificaciones">Listar especificaciones</h3>
-<pre><code class="language-bash">curl -X GET http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productSpecification \
-  -H 'Accept: application/json'
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productSpecification<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json&#39;</span>
+</code></pre></div>
 <hr />
 <h2 id="crear-una-product-offering">Crear una Product Offering</h2>
+<div class="admonition note">
 <p>Una Product Offering representa una oferta comercial concreta basada en una especificación previa.
 Puede haber múltiples ofertas con diferentes condiciones, precios o políticas asociadas.</p>
-<pre><code class="language-bash">export PRODUCT_OFFERING_SMALL_ID=$(curl -X POST \
-  http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productOffering \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d &quot;{
-    \&quot;version\&quot;: \&quot;1.0.0\&quot;,
-    \&quot;lifecycleStatus\&quot;: \&quot;ACTIVE\&quot;,
-    \&quot;name\&quot;: \&quot;M&amp;P K8S Offering Small\&quot;,
-    \&quot;productSpecification\&quot;: {
-      \&quot;id\&quot;: \&quot;${PRODUCT_SPEC_FULL_ID}\&quot;
-    }
-  }&quot; | jq -r '.id'); echo ${PRODUCT_OFFERING_SMALL_ID}
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PRODUCT_OFFERING_SMALL_ID</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productOffering<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json;charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{</span>
+<span class="s2">    \&quot;version\&quot;: \&quot;1.0.0\&quot;,</span>
+<span class="s2">    \&quot;lifecycleStatus\&quot;: \&quot;ACTIVE\&quot;,</span>
+<span class="s2">    \&quot;name\&quot;: \&quot;M&amp;P K8S Offering Small\&quot;,</span>
+<span class="s2">    \&quot;productSpecification\&quot;: {</span>
+<span class="s2">      \&quot;id\&quot;: \&quot;</span><span class="si">${</span><span class="nv">PRODUCT_SPEC_FULL_ID</span><span class="si">}</span><span class="s2">\&quot;</span>
+<span class="s2">    }</span>
+<span class="s2">  }&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.id&#39;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">PRODUCT_OFFERING_SMALL_ID</span><span class="si">}</span>
+</code></pre></div>
+<div class="admonition note">
 <ul>
 <li>
 <p>Crea una Product Offering basada en la Product Specification anterior.</p>
@@ -965,31 +970,34 @@ Puede haber múltiples ofertas con diferentes condiciones, precios o políticas 
 <p>Devuelve el ID de la nueva oferta.</p>
 </li>
 </ul>
+</div>
 <hr />
 <h3 id="listar-ofertas">Listar ofertas</h3>
-<pre><code class="language-bash">curl -X GET http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productOffering \
-  -H 'Accept: application/json'
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productCatalogManagement/v4/productOffering<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json&#39;</span>
+</code></pre></div>
 <hr />
 <h2 id="registrar-una-organizacion-organization">Registrar una organización (Organization)</h2>
-<p>Antes de poder realizar pedidos o firmar contratos, una organización consumidora debe registrarse en el conector del proveedor.<br />
-Esto se realiza mediante la API <strong>Party Management</strong> de TM Forum (<code>/tmf-api/party/v4/organization</code>).</p>
+<p>Antes de poder realizar pedidos o firmar contratos, una organización consumidora debe registrarse en el conector del proveedor. Esto se realiza mediante la API <strong>Party Management</strong> de TM Forum (<code>/tmf-api/party/v4/organization</code>).</p>
+<div class="admonition note">
 <p>En este ejemplo, <em>Fancy Marketplace</em> se registra en <em>M&amp;P Operations</em> utilizando una credencial de tipo <strong>REPRESENTATIVE</strong>.</p>
-<pre><code class="language-bash">export FANCY_MARKETPLACE_ID=$(curl -X POST \
-  http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/party/v4/organization \
-  -H 'Accept: */*' \
-  -H 'Content-Type: application/json' \
-  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
-  -d &quot;{
-    \&quot;name\&quot;: \&quot;Fancy Marketplace Inc.\&quot;,
-    \&quot;partyCharacteristic\&quot;: [
-      {
-        \&quot;name\&quot;: \&quot;did\&quot;,
-        \&quot;value\&quot;: \&quot;${CONSUMER_DID}\&quot;
-      }
-    ]
-  }&quot; | jq -r '.id'); echo ${FANCY_MARKETPLACE_ID}
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">FANCY_MARKETPLACE_ID</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/party/v4/organization<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: */*&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{</span>
+<span class="s2">    \&quot;name\&quot;: \&quot;Fancy Marketplace Inc.\&quot;,</span>
+<span class="s2">    \&quot;partyCharacteristic\&quot;: [</span>
+<span class="s2">      {</span>
+<span class="s2">        \&quot;name\&quot;: \&quot;did\&quot;,</span>
+<span class="s2">        \&quot;value\&quot;: \&quot;</span><span class="si">${</span><span class="nv">CONSUMER_DID</span><span class="si">}</span><span class="s2">\&quot;</span>
+<span class="s2">      }</span>
+<span class="s2">    ]</span>
+<span class="s2">  }&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.id&#39;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">FANCY_MARKETPLACE_ID</span><span class="si">}</span>
+</code></pre></div>
+<div class="admonition note">
 <ul>
 <li>
 <p>Crea una Organization con nombre Fancy Marketplace Inc..</p>
@@ -1013,39 +1021,45 @@ Esto se realiza mediante la API <strong>Party Management</strong> de TM Forum (<
 <p>El conector del proveedor puede aplicar las políticas ODRL que restringen qué roles (e.g. REPRESENTATIVE) pueden crear u ordenar productos.</p>
 </li>
 </ul>
+</div>
 <hr />
 <h2 id="consultar-organizaciones-registradas">Consultar organizaciones registradas</h2>
-<pre><code class="language-bash">curl -X GET \
-  http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/party/v4/organization \
-  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
-  -H 'Accept: application/json'
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/party/v4/organization<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json&#39;</span>
+</code></pre></div>
+<div class="admonition note">
 <p>Devuelve una lista de todas las organizaciones registradas, incluyendo su id, name, y características (partyCharacteristic).</p>
+</div>
 <hr />
 <h2 id="crear-y-completar-un-product-order">Crear y completar un Product Order</h2>
 <p>Una vez registrada la organización y disponible una oferta (<code>Product Offering</code>), el consumidor puede <strong>aceptar la oferta</strong> creando un pedido (<em>Product Order</em>).<br />
 Esto representa la firma de un acuerdo de uso de datos dentro del dataspace.</p>
 <hr />
 <h3 id="paso-1-crear-el-pedido">Paso 1. Crear el pedido</h3>
+<div class="admonition note">
 <p>El consumidor (por ejemplo, <em>Fancy Marketplace Inc.</em>) crea un <strong>Product Order</strong> indicando la oferta (<code>OFFER_ID</code>) que desea contratar y el identificador de su organización (<code>FANCY_MARKETPLACE_ID</code>).</p>
-<pre><code class="language-bash">export ORDER_ID=$(curl -X POST \
-  http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/productOrderingManagement/v4/productOrder \
-  -H 'Accept: */*' \
-  -H 'Content-Type: application/json' \
-  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
-  -d &quot;{
-    \&quot;productOrderItem\&quot;: [
-      {
-        \&quot;id\&quot;: \&quot;random-order-id\&quot;,
-        \&quot;action\&quot;: \&quot;add\&quot;,
-        \&quot;productOffering\&quot;: { \&quot;id\&quot;: \&quot;${OFFER_ID}\&quot; }
-      }
-    ],
-    \&quot;relatedParty\&quot;: [
-      { \&quot;id\&quot;: \&quot;${FANCY_MARKETPLACE_ID}\&quot; }
-    ]
-  }&quot; | jq -r '.id'); echo ${ORDER_ID}
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ORDER_ID</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/productOrderingManagement/v4/productOrder<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: */*&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{</span>
+<span class="s2">    \&quot;productOrderItem\&quot;: [</span>
+<span class="s2">      {</span>
+<span class="s2">        \&quot;id\&quot;: \&quot;random-order-id\&quot;,</span>
+<span class="s2">        \&quot;action\&quot;: \&quot;add\&quot;,</span>
+<span class="s2">        \&quot;productOffering\&quot;: { \&quot;id\&quot;: \&quot;</span><span class="si">${</span><span class="nv">OFFER_ID</span><span class="si">}</span><span class="s2">\&quot; }</span>
+<span class="s2">      }</span>
+<span class="s2">    ],</span>
+<span class="s2">    \&quot;relatedParty\&quot;: [</span>
+<span class="s2">      { \&quot;id\&quot;: \&quot;</span><span class="si">${</span><span class="nv">FANCY_MARKETPLACE_ID</span><span class="si">}</span><span class="s2">\&quot; }</span>
+<span class="s2">    ]</span>
+<span class="s2">  }&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.id&#39;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">ORDER_ID</span><span class="si">}</span>
+</code></pre></div>
+<div class="admonition note">
 <ul>
 <li>
 <p>Crea un Product Order asociado a la oferta seleccionada.</p>
@@ -1060,18 +1074,22 @@ Esto representa la firma de un acuerdo de uso de datos dentro del dataspace.</p>
 <p>Devuelve el identificador único del pedido (ORDER_ID).</p>
 </li>
 </ul>
+</div>
 <h3 id="paso-2-completar-el-pedido">Paso 2. Completar el pedido</h3>
+<div class="admonition note">
 <p>Una vez procesado por el sistema del proveedor, el pedido debe marcarse como completado.
 Esto simula la confirmación de que la organización tiene acceso al dataset o servicio adquirido.</p>
-<pre><code class="language-bash">curl -X PATCH \
-  http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productOrderingManagement/v4/productOrder/${ORDER_ID} \
-  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
-  -H 'Accept: application/json;charset=utf-8' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-    &quot;state&quot;: &quot;completed&quot;
-  }' | jq .
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PATCH<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://tm-forum-api.127.0.0.1.nip.io:8080/tmf-api/productOrderingManagement/v4/productOrder/<span class="si">${</span><span class="nv">ORDER_ID</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json;charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json;charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;state&quot;: &quot;completed&quot;</span>
+<span class="s1">  }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.
+</code></pre></div>
+<div class="admonition note">
 <ul>
 <li>
 <p>Actualiza el estado del pedido a "completed".</p>
@@ -1083,25 +1101,16 @@ Esto simula la confirmación de que la organización tiene acceso al dataset o s
 <p>Una vez completado, se genera el Agreement que rige el acceso del consumidor a los activos de datos.</p>
 </li>
 </ul>
+</div>
 <h3 id="consultar-pedidos-activos">Consultar pedidos activos</h3>
-<pre><code class="language-bash">curl -X GET \
-  http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/productOrderingManagement/v4/productOrder \
-  -H &quot;Authorization: Bearer ${ACCESS_TOKEN}&quot; \
-  -H 'Accept: application/json'
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://mp-tmf-api.127.0.0.1.nip.io:8080/tmf-api/productOrderingManagement/v4/productOrder<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="si">${</span><span class="nv">ACCESS_TOKEN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json&#39;</span>
+</code></pre></div>
+<div class="admonition note">
 <p>Todos los pedidos asociados al consumidor autenticado, junto con su estado (acknowledged, inProgress, completed, etc.).</p>
-<p>Resultado final:</p>
-<ul>
-<li>
-<p>El consumidor ha aceptado una oferta (Product Offering).</p>
-</li>
-<li>
-<p>El pedido ha sido procesado y completado.</p>
-</li>
-<li>
-<p>Se genera un Data Agreement que vincula las políticas ODRL y permite el acceso controlado a los datos en el dataspace.</p>
-</li>
-</ul>
+</div>
 
 
 
@@ -1143,7 +1152,7 @@ Esto simula la confirmación de que la organización tiene acceso al dataset o s
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>

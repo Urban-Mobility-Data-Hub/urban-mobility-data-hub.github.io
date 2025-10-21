@@ -570,41 +570,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#ejemplos-de-politicas" class="md-nav__link">
-    Ejemplos de políticas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-todos-los-participantes-autenticados-leer-ofertas" class="md-nav__link">
-    Permitir a todos los participantes autenticados leer ofertas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-los-representative-registrarse-como-cliente" class="md-nav__link">
-    Permitir a los REPRESENTATIVE registrarse como cliente
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-los-representative-crear-ordenes-de-productos" class="md-nav__link">
-    Permitir a los REPRESENTATIVE crear órdenes de productos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-los-operators-leer-informacion-de-clusteres" class="md-nav__link">
-    Permitir a los OPERATORS leer información de clústeres
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -707,41 +672,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#ejemplos-de-politicas" class="md-nav__link">
-    Ejemplos de políticas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-todos-los-participantes-autenticados-leer-ofertas" class="md-nav__link">
-    Permitir a todos los participantes autenticados leer ofertas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-los-representative-registrarse-como-cliente" class="md-nav__link">
-    Permitir a los REPRESENTATIVE registrarse como cliente
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-los-representative-crear-ordenes-de-productos" class="md-nav__link">
-    Permitir a los REPRESENTATIVE crear órdenes de productos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permitir-a-los-operators-leer-informacion-de-clusteres" class="md-nav__link">
-    Permitir a los OPERATORS leer información de clústeres
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -768,193 +698,205 @@ Dentro del dataspace, las políticas se gestionan a través del <strong>Policy E
 <hr />
 <h2 id="crear-una-politica-odrl">Crear una política ODRL</h2>
 <p>Ejemplo básico de política de acceso (en formato JSON):</p>
-<pre><code class="language-json">    {
-        &quot;@context&quot;: &quot;https://www.w3.org/ns/odrl.jsonld&quot;,
-        &quot;uid&quot;: &quot;urn:policy:read-access&quot;,
-        &quot;permission&quot;: [{
-            &quot;target&quot;: &quot;urn:asset:temperature-sensor&quot;,
-            &quot;action&quot;: &quot;use&quot;,
-            &quot;constraint&quot;: [{
-            &quot;leftOperand&quot;: &quot;purpose&quot;,
-            &quot;operator&quot;: &quot;eq&quot;,
-            &quot;rightOperand&quot;: &quot;research&quot;
-            }]
-        }]
-    }
-</code></pre>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.w3.org/ns/odrl.jsonld&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:policy:read-access&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;permission&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">        </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:asset:temperature-sensor&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;use&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;constraint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">        </span><span class="nt">&quot;leftOperand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;purpose&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;operator&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eq&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;rightOperand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;research&quot;</span>
+<span class="w">        </span><span class="p">}]</span>
+<span class="w">    </span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="registrar-la-politica">Registrar la política</h2>
-<pre><code class="language-json">    curl -X POST http://localhost:8080/odrl-pap/policies \
-    -H &quot;Content-Type: application/json&quot; \
-    -d @policy.json
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://pap-provider.127.0.0.1.nip.io:8080/policy<span class="w"> </span><span class="se">\</span>
+-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+-d<span class="w"> </span>@policy.json
+</code></pre></div>
 <h2 id="consultar-politicas-activas">Consultar políticas activas</h2>
-<pre><code class="language-json">    curl http://localhost:8080/odrl-pap/policies
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>http://DATASPACE_URL/pap-provider.127.0.0.1.nip.io:8080/policies
+</code></pre></div>
 <hr />
-<h2 id="ejemplos-de-politicas">Ejemplos de políticas</h2>
+<h1 id="ejemplos-de-politicas">Ejemplos de políticas</h1>
 <h2 id="permitir-a-todos-los-participantes-autenticados-leer-ofertas">Permitir a todos los participantes autenticados leer ofertas</h2>
+<div class="admonition note">
 <p>Esta política permite que cualquier participante autenticado pueda consultar los ProductOfferings registrados en el catálogo.</p>
-<pre><code class="language-bash">curl -s -X POST http://pap-provider.127.0.0.1.nip.io:8080/policy \
-  -H 'Content-Type: application/json' \
-  -d '{
-    &quot;@context&quot;: {
-      &quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;,
-      &quot;tmf&quot;: &quot;https://tmforum.org/&quot;
-    },
-    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/offering&quot;,
-    &quot;@type&quot;: &quot;odrl:Policy&quot;,
-    &quot;odrl:permission&quot;: {
-      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},
-      &quot;odrl:target&quot;: {
-        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,
-        &quot;odrl:source&quot;: &quot;urn:asset&quot;,
-        &quot;odrl:refinement&quot;: [{
-          &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-          &quot;odrl:leftOperand&quot;: &quot;tmf:resource&quot;,
-          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},
-          &quot;odrl:rightOperand&quot;: &quot;productOffering&quot;
-        }]
-      },
-      &quot;odrl:assignee&quot;: {&quot;@id&quot;: &quot;vc:any&quot;},
-      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;odrl:read&quot;}
-    }
-  }'
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://pap-provider.127.0.0.1.nip.io:8080/policy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;@context&quot;: {</span>
+<span class="s1">      &quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;,</span>
+<span class="s1">      &quot;tmf&quot;: &quot;https://tmforum.org/&quot;</span>
+<span class="s1">    },</span>
+<span class="s1">    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/offering&quot;,</span>
+<span class="s1">    &quot;@type&quot;: &quot;odrl:Policy&quot;,</span>
+<span class="s1">    &quot;odrl:permission&quot;: {</span>
+<span class="s1">      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},</span>
+<span class="s1">      &quot;odrl:target&quot;: {</span>
+<span class="s1">        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,</span>
+<span class="s1">        &quot;odrl:source&quot;: &quot;urn:asset&quot;,</span>
+<span class="s1">        &quot;odrl:refinement&quot;: [{</span>
+<span class="s1">          &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">          &quot;odrl:leftOperand&quot;: &quot;tmf:resource&quot;,</span>
+<span class="s1">          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},</span>
+<span class="s1">          &quot;odrl:rightOperand&quot;: &quot;productOffering&quot;</span>
+<span class="s1">        }]</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;odrl:assignee&quot;: {&quot;@id&quot;: &quot;vc:any&quot;},</span>
+<span class="s1">      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;odrl:read&quot;}</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<hr />
 <h2 id="permitir-a-los-representative-registrarse-como-cliente">Permitir a los REPRESENTATIVE registrarse como cliente</h2>
+<div class="admonition note">
 <p>Esta política restringe el registro de organizaciones únicamente a usuarios con el rol REPRESENTATIVE.</p>
-<pre><code class="language-bash">curl -s -X POST http://pap-provider.127.0.0.1.nip.io:8080/policy \
-  -H 'Content-Type: application/json' \
-  -d '{
-    &quot;@context&quot;: {&quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;, &quot;tmf&quot;: &quot;https://tmforum.org/&quot;},
-    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/selfRegistration&quot;,
-    &quot;@type&quot;: &quot;odrl:Policy&quot;,
-    &quot;odrl:permission&quot;: {
-      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},
-      &quot;odrl:target&quot;: {
-        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,
-        &quot;odrl:source&quot;: &quot;urn:asset&quot;,
-        &quot;odrl:refinement&quot;: [{
-          &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-          &quot;odrl:leftOperand&quot;: &quot;tmf:resource&quot;,
-          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},
-          &quot;odrl:rightOperand&quot;: &quot;organization&quot;
-        }]
-      },
-      &quot;odrl:assignee&quot;: {
-        &quot;@type&quot;: &quot;odrl:PartyCollection&quot;,
-        &quot;odrl:source&quot;: &quot;urn:user&quot;,
-        &quot;odrl:refinement&quot;: {
-          &quot;@type&quot;: &quot;odrl:LogicalConstraint&quot;,
-          &quot;odrl:and&quot;: [
-            {
-              &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:role&quot;},
-              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},
-              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;REPRESENTATIVE&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}
-            },
-            {
-              &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:type&quot;},
-              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},
-              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;UserCredential&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}
-            }
-          ]
-        }
-      },
-      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;tmf:create&quot;}
-    }
-  }'
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://pap-provider.127.0.0.1.nip.io:8080/policy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;@context&quot;: {&quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;, &quot;tmf&quot;: &quot;https://tmforum.org/&quot;},</span>
+<span class="s1">    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/selfRegistration&quot;,</span>
+<span class="s1">    &quot;@type&quot;: &quot;odrl:Policy&quot;,</span>
+<span class="s1">    &quot;odrl:permission&quot;: {</span>
+<span class="s1">      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},</span>
+<span class="s1">      &quot;odrl:target&quot;: {</span>
+<span class="s1">        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,</span>
+<span class="s1">        &quot;odrl:source&quot;: &quot;urn:asset&quot;,</span>
+<span class="s1">        &quot;odrl:refinement&quot;: [{</span>
+<span class="s1">          &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">          &quot;odrl:leftOperand&quot;: &quot;tmf:resource&quot;,</span>
+<span class="s1">          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},</span>
+<span class="s1">          &quot;odrl:rightOperand&quot;: &quot;organization&quot;</span>
+<span class="s1">        }]</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;odrl:assignee&quot;: {</span>
+<span class="s1">        &quot;@type&quot;: &quot;odrl:PartyCollection&quot;,</span>
+<span class="s1">        &quot;odrl:source&quot;: &quot;urn:user&quot;,</span>
+<span class="s1">        &quot;odrl:refinement&quot;: {</span>
+<span class="s1">          &quot;@type&quot;: &quot;odrl:LogicalConstraint&quot;,</span>
+<span class="s1">          &quot;odrl:and&quot;: [</span>
+<span class="s1">            {</span>
+<span class="s1">              &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:role&quot;},</span>
+<span class="s1">              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},</span>
+<span class="s1">              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;REPRESENTATIVE&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}</span>
+<span class="s1">            },</span>
+<span class="s1">            {</span>
+<span class="s1">              &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:type&quot;},</span>
+<span class="s1">              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},</span>
+<span class="s1">              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;UserCredential&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}</span>
+<span class="s1">            }</span>
+<span class="s1">          ]</span>
+<span class="s1">        }</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;tmf:create&quot;}</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<hr />
 <h2 id="permitir-a-los-representative-crear-ordenes-de-productos">Permitir a los REPRESENTATIVE crear órdenes de productos</h2>
+<div class="admonition note">
 <p>Esta política autoriza la creación de ProductOrders por parte de los usuarios con rol REPRESENTATIVE.</p>
-<pre><code class="language-bash">curl -s -X POST http://pap-provider.127.0.0.1.nip.io:8080/policy \
-  -H 'Content-Type: application/json' \
-  -d '{
-    &quot;@context&quot;: {&quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;, &quot;tmf&quot;: &quot;https://tmforum.org/&quot;},
-    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/ordering&quot;,
-    &quot;@type&quot;: &quot;odrl:Policy&quot;,
-    &quot;odrl:permission&quot;: {
-      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},
-      &quot;odrl:target&quot;: {
-        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,
-        &quot;odrl:source&quot;: &quot;urn:asset&quot;,
-        &quot;odrl:refinement&quot;: [{
-          &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-          &quot;odrl:leftOperand&quot;: &quot;tmf:resource&quot;,
-          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},
-          &quot;odrl:rightOperand&quot;: &quot;productOrder&quot;
-        }]
-      },
-      &quot;odrl:assignee&quot;: {
-        &quot;@type&quot;: &quot;odrl:PartyCollection&quot;,
-        &quot;odrl:source&quot;: &quot;urn:user&quot;,
-        &quot;odrl:refinement&quot;: {
-          &quot;@type&quot;: &quot;odrl:LogicalConstraint&quot;,
-          &quot;odrl:and&quot;: [
-            {
-              &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:role&quot;},
-              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},
-              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;REPRESENTATIVE&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}
-            },
-            {
-              &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:type&quot;},
-              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},
-              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;UserCredential&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}
-            }
-          ]
-        }
-      },
-      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;tmf:create&quot;}
-    }
-  }'
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://pap-provider.127.0.0.1.nip.io:8080/policy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;@context&quot;: {&quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;, &quot;tmf&quot;: &quot;https://tmforum.org/&quot;},</span>
+<span class="s1">    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/ordering&quot;,</span>
+<span class="s1">    &quot;@type&quot;: &quot;odrl:Policy&quot;,</span>
+<span class="s1">    &quot;odrl:permission&quot;: {</span>
+<span class="s1">      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},</span>
+<span class="s1">      &quot;odrl:target&quot;: {</span>
+<span class="s1">        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,</span>
+<span class="s1">        &quot;odrl:source&quot;: &quot;urn:asset&quot;,</span>
+<span class="s1">        &quot;odrl:refinement&quot;: [{</span>
+<span class="s1">          &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">          &quot;odrl:leftOperand&quot;: &quot;tmf:resource&quot;,</span>
+<span class="s1">          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},</span>
+<span class="s1">          &quot;odrl:rightOperand&quot;: &quot;productOrder&quot;</span>
+<span class="s1">        }]</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;odrl:assignee&quot;: {</span>
+<span class="s1">        &quot;@type&quot;: &quot;odrl:PartyCollection&quot;,</span>
+<span class="s1">        &quot;odrl:source&quot;: &quot;urn:user&quot;,</span>
+<span class="s1">        &quot;odrl:refinement&quot;: {</span>
+<span class="s1">          &quot;@type&quot;: &quot;odrl:LogicalConstraint&quot;,</span>
+<span class="s1">          &quot;odrl:and&quot;: [</span>
+<span class="s1">            {</span>
+<span class="s1">              &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:role&quot;},</span>
+<span class="s1">              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},</span>
+<span class="s1">              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;REPRESENTATIVE&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}</span>
+<span class="s1">            },</span>
+<span class="s1">            {</span>
+<span class="s1">              &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:type&quot;},</span>
+<span class="s1">              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},</span>
+<span class="s1">              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;UserCredential&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}</span>
+<span class="s1">            }</span>
+<span class="s1">          ]</span>
+<span class="s1">        }</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;tmf:create&quot;}</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<hr />
 <h2 id="permitir-a-los-operators-leer-informacion-de-clusteres">Permitir a los OPERATORS leer información de clústeres</h2>
+<div class="admonition note">
 <p>Esta política da acceso de lectura a entidades del tipo K8SCluster únicamente a usuarios con credenciales de tipo OperatorCredential.</p>
-<pre><code class="language-bash">curl -s -X POST http://pap-provider.127.0.0.1.nip.io:8080/policy \
-  -H 'Content-Type: application/json' \
-  -d '{
-    &quot;@context&quot;: {&quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;, &quot;ngsi-ld&quot;: &quot;https://uri.etsi.org/ngsi-ld/&quot;},
-    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/allowRead&quot;,
-    &quot;@type&quot;: &quot;odrl:Policy&quot;,
-    &quot;odrl:permission&quot;: {
-      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},
-      &quot;odrl:target&quot;: {
-        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,
-        &quot;odrl:source&quot;: &quot;urn:asset&quot;,
-        &quot;odrl:refinement&quot;: [{
-          &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-          &quot;odrl:leftOperand&quot;: &quot;ngsi-ld:entityType&quot;,
-          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},
-          &quot;odrl:rightOperand&quot;: &quot;K8SCluster&quot;
-        }]
-      },
-      &quot;odrl:assignee&quot;: {
-        &quot;@type&quot;: &quot;odrl:PartyCollection&quot;,
-        &quot;odrl:source&quot;: &quot;urn:user&quot;,
-        &quot;odrl:refinement&quot;: {
-          &quot;@type&quot;: &quot;odrl:LogicalConstraint&quot;,
-          &quot;odrl:and&quot;: [
-            {
-              &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:role&quot;},
-              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},
-              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;OPERATOR&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}
-            },
-            {
-              &quot;@type&quot;: &quot;odrl:Constraint&quot;,
-              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:type&quot;},
-              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},
-              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;OperatorCredential&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}
-            }
-          ]
-        }
-      },
-      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;odrl:read&quot;}
-    }
-  }'
-</code></pre>
+</div>
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://pap-provider.127.0.0.1.nip.io:8080/policy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;@context&quot;: {&quot;odrl&quot;: &quot;http://www.w3.org/ns/odrl/2/&quot;, &quot;ngsi-ld&quot;: &quot;https://uri.etsi.org/ngsi-ld/&quot;},</span>
+<span class="s1">    &quot;odrl:uid&quot;: &quot;https://mp-operation.org/policy/common/allowRead&quot;,</span>
+<span class="s1">    &quot;@type&quot;: &quot;odrl:Policy&quot;,</span>
+<span class="s1">    &quot;odrl:permission&quot;: {</span>
+<span class="s1">      &quot;odrl:assigner&quot;: {&quot;@id&quot;: &quot;https://www.mp-operation.org/&quot;},</span>
+<span class="s1">      &quot;odrl:target&quot;: {</span>
+<span class="s1">        &quot;@type&quot;: &quot;odrl:AssetCollection&quot;,</span>
+<span class="s1">        &quot;odrl:source&quot;: &quot;urn:asset&quot;,</span>
+<span class="s1">        &quot;odrl:refinement&quot;: [{</span>
+<span class="s1">          &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">          &quot;odrl:leftOperand&quot;: &quot;ngsi-ld:entityType&quot;,</span>
+<span class="s1">          &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:eq&quot;},</span>
+<span class="s1">          &quot;odrl:rightOperand&quot;: &quot;K8SCluster&quot;</span>
+<span class="s1">        }]</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;odrl:assignee&quot;: {</span>
+<span class="s1">        &quot;@type&quot;: &quot;odrl:PartyCollection&quot;,</span>
+<span class="s1">        &quot;odrl:source&quot;: &quot;urn:user&quot;,</span>
+<span class="s1">        &quot;odrl:refinement&quot;: {</span>
+<span class="s1">          &quot;@type&quot;: &quot;odrl:LogicalConstraint&quot;,</span>
+<span class="s1">          &quot;odrl:and&quot;: [</span>
+<span class="s1">            {</span>
+<span class="s1">              &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:role&quot;},</span>
+<span class="s1">              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},</span>
+<span class="s1">              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;OPERATOR&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}</span>
+<span class="s1">            },</span>
+<span class="s1">            {</span>
+<span class="s1">              &quot;@type&quot;: &quot;odrl:Constraint&quot;,</span>
+<span class="s1">              &quot;odrl:leftOperand&quot;: {&quot;@id&quot;: &quot;vc:type&quot;},</span>
+<span class="s1">              &quot;odrl:operator&quot;: {&quot;@id&quot;: &quot;odrl:hasPart&quot;},</span>
+<span class="s1">              &quot;odrl:rightOperand&quot;: {&quot;@value&quot;: &quot;OperatorCredential&quot;, &quot;@type&quot;: &quot;xsd:string&quot;}</span>
+<span class="s1">            }</span>
+<span class="s1">          ]</span>
+<span class="s1">        }</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;odrl:action&quot;: {&quot;@id&quot;: &quot;odrl:read&quot;}</span>
+<span class="s1">    }</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<hr />
 <p>Cada una de estas políticas se almacena en el Policy Administration Point (PAP) y es evaluada en tiempo real por el Policy Decision Point (PDP) cuando un usuario intenta realizar una operación sobre datos o recursos del dataspace.</p>
 
 
@@ -997,7 +939,7 @@ Dentro del dataspace, las políticas se gestionan a través del <strong>Policy E
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
